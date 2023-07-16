@@ -59,4 +59,10 @@
 		<!-- <PackageReference Include="Zetrith.Prepatcher" Version="1.*" /> -->
 		<!-- Details with wiki here: https://github.com/Zetrith/Prepatcher -->
 	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="Harmony\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Harmony\" />
+	</ItemGroup>
 </Project>
