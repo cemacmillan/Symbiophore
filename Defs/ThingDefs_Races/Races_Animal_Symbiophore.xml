@@ -3,7 +3,7 @@
     <ThingDef ParentName="AnimalThingBase">
         <defName>Symbiophore</defName>
         <label>symbiophore</label>
-        <description>A strange worm-like creature that produces thread and forms bonds with humans. It possesses animal intelligence and has psychic properties.</description>
+     <description>A mysterious creature bearing a resemblance to a terrestrial grub, the symbiophore stands out in the spectrum of lifeforms for its unique psychic properties and its ability to form bonds with humans. The symbiophore displays a level of animalistic intelligence and has a unique ability to absorb psychic entropy, making it an enigma among the scholars of natural sciences. Despite its grub-like form and unusual coloring, colonists often form strong emotional bonds with this creature, the likes of which can be compared to the companionship offered by a common domesticated animal. Its exotic nature, coming from the hottest jungles of the Rim, coupled with its extraordinary abilities, have made symbiophores much sought out as pets.</description>
         <statBases>
             <MoveSpeed>3</MoveSpeed>
             <ArmorRating_Blunt>0.72</ArmorRating_Blunt>
@@ -14,12 +14,10 @@
         </statBases>
         <comps>
             <li>
-                <compClass>DIL_Symbiophore.SymbiophoreMoodTracker</compClass>
+                <compClass>DIL_Symbiophore.Comp_Symbiophore</compClass>
             </li>
-            <li Class="CompProperties_Shearable">
-                <woolDef>Synthread</woolDef>
-                <shearIntervalDays>5</shearIntervalDays>
-                <woolAmount>20</woolAmount>
+            <li>
+                <compClass>DIL_Symbiophore.SymbiophoreMoodTracker</compClass>
             </li>
         </comps>
         <uiIconScale>2</uiIconScale>
@@ -54,6 +52,7 @@
             </li>
         </tools>
         <race>
+
             <body>BeetleLike</body>
             <fleshType>Insectoid</fleshType>
             <bloodDef>Filth_BloodInsect</bloodDef>

@@ -31,7 +31,7 @@ namespace DIL_Symbiophore
         public override void CompTick()
         {
             base.CompTick();
-            Log.Message("CompTick called for SymbiophoreMoodTracker.");
+          
         }
     }
 }

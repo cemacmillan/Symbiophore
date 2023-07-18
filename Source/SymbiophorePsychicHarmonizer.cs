@@ -7,23 +7,26 @@ namespace DIL_Symbiophore
 {
     public class SymbiophorePsychicHarmonizer : HediffComp
     {
-        private float moodProxy = 3.0f;  // happy symbiophore
+        private int tickCounter = 0;
+        public float moodProxy = 1.0f;
 
         public override void CompPostMake()
         {
             base.CompPostMake();
             // Perform any initialization logic here
-        }
-
-        public override void CompExposeData()
-        {
-            base.CompExposeData();
-            Scribe_Values.Look(ref moodProxy, "moodProxy", 1.0f);  // Serialize/deserialize mood proxy
+            moodProxy = 1.0f;
         }
 
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
+
+            tickCounter++;
+            if (tickCounter < 600)  // Only apply the mood effect every 600 ticks (1 real-time second at normal speed)
+            {
+                return;
+            }
+            tickCounter = 0;
 
             // Check if the parent or the pawn are null
             if (this.parent == null || this.parent.pawn == null)
@@ -39,40 +42,47 @@ namespace DIL_Symbiophore
                 return;
             }
 
+            // Reset moodProxy to base value
+            moodProxy = 1.0f;
+
             // Check if the symbiophore is outside
             if (!pawn.Position.Roofed(pawn.Map))
             {
-                moodProxy += 0.1f;  // Increase mood proxy
+                moodProxy *= 1.1f;  // Increase mood proxy by 10%
             }
 
             // Check if the symbiophore is eating
             if (pawn.CurJobDef == JobDefOf.Ingest)
             {
-                moodProxy += 0.1f;  // Increase mood proxy
+                moodProxy *= 1.1f;  // Increase mood proxy by 10%
             }
 
             // Check if the symbiophore is hungry
             if (pawn.needs.food.CurLevelPercentage < 0.2f)
             {
-                moodProxy -= 0.1f;  // Decrease mood proxy
+                moodProxy *= 0.8f;  // Decrease mood proxy by 20%
             }
 
             // Check if the symbiophore is tired and can't sleep
             if (pawn.needs.rest.CurLevelPercentage < 0.2f && !RestUtility.CanFallAsleep(pawn))
             {
-                moodProxy -= 0.1f;  // Decrease mood proxy
+                moodProxy *= 0.9f;  // Decrease mood proxy by 10%
             }
 
             // Check if the symbiophore is in an uncomfortable temperature
             float ambientTemperature = pawn.AmbientTemperature;
             if (ambientTemperature < 21f || ambientTemperature > 37f)
             {
-                moodProxy -= 0.1f;  // Decrease mood proxy
+                moodProxy *= 0.8f;  // Decrease mood proxy by 20%
             }
+
+            float assumedNeutralMood = 0.5f; // Assuming mood is on a scale from 0 to 1
+            moodProxy = moodProxy / (1.0f + (1 - assumedNeutralMood));
+
+
 
             // Ensure mood proxy doesn't go below 0
             moodProxy = Mathf.Max(moodProxy, 0f);
-
             // Check if the pawn's map or the list of all spawned pawns are null
             if (pawn.Map == null || pawn.Map.mapPawns.AllPawnsSpawned == null)
             {
@@ -81,13 +91,12 @@ namespace DIL_Symbiophore
 
             // Affect other pawns with the mood proxy
             List<Pawn> pawns = pawn.Map.mapPawns.AllPawnsSpawned;
-            AffectPawnsWithMoodProxy(pawn, pawns, moodProxy);
+            // Because I have seen a value of thousands
+            float clampedMoodProxy = Mathf.Min(moodProxy, 10f);
+            AffectPawnsWithMoodProxy(pawn, pawns, clampedMoodProxy);
         }
-
-
         private void AffectPawnsWithMoodProxy(Pawn symbiophore, List<Pawn> pawns, float moodProxy)
         {
-          
             if (symbiophore == null || pawns == null)
             {
                 return;
@@ -100,28 +109,43 @@ namespace DIL_Symbiophore
                     continue;
                 }
 
-                bool hasHarmonizerThought = false;
-                foreach (Thought_Memory memory in pawn.needs.mood.thoughts.memories.Memories)
+                // Only apply the effect if the pawn is not downed, not in a mental state, and not dead.
+                if (!symbiophore.Downed && symbiophore.MentalState == null && !symbiophore.Dead)
                 {
-                    if (memory is Thought_SymbiophoreHarmonizer thought_SymbiophoreHarmonizer && thought_SymbiophoreHarmonizer.harmonizer == this.parent)
+                    Thought_SymbiophoreHarmonizer existingHarmonizerThought = null;
+                    foreach (Thought_Memory memory in pawn.needs.mood.thoughts.memories.Memories)
                     {
-                        hasHarmonizerThought = true;
-                        
-                        break;
+                        if (memory is Thought_SymbiophoreHarmonizer thought_SymbiophoreHarmonizer && thought_SymbiophoreHarmonizer.harmonizer == this.parent)
+                        {
+                            existingHarmonizerThought = thought_SymbiophoreHarmonizer;
+                            break;
+                        }
                     }
-                }
 
-                if (!hasHarmonizerThought)
-                {
-                    Thought_SymbiophoreHarmonizer thought_SymbiophoreHarmonizer2 = (Thought_SymbiophoreHarmonizer)ThoughtMaker.MakeThought(ThoughtDef.Named("SymbiophorePsychicHarmonization"));
-                    thought_SymbiophoreHarmonizer2.harmonizer = this.parent;
-                    thought_SymbiophoreHarmonizer2.otherPawn = symbiophore;
-                    thought_SymbiophoreHarmonizer2.moodPowerFactor = moodProxy; // Modify the thought's mood impact using moodProxy
-                    pawn.needs.mood.thoughts.memories.TryGainMemory(thought_SymbiophoreHarmonizer2);
-                    
+                    if (existingHarmonizerThought == null)
+                    {
+                        Thought_SymbiophoreHarmonizer thought_SymbiophoreHarmonizer2 = (Thought_SymbiophoreHarmonizer)ThoughtMaker.MakeThought(ThoughtDef.Named("SymbiophorePsychicHarmonization"));
+                        thought_SymbiophoreHarmonizer2.harmonizer = this.parent;
+                        thought_SymbiophoreHarmonizer2.otherPawn = symbiophore;
+                        thought_SymbiophoreHarmonizer2.moodPowerFactor = Mathf.Min(moodProxy, 10f); // Normalize moodProxy and clamp the moodPowerFactor
+
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(thought_SymbiophoreHarmonizer2);
+
+                        // Log the mood effect being applied
+                        Log.Message($"Applying mood effect to pawn {pawn.Name}: moodProxy = {moodProxy}, moodPowerFactor = {thought_SymbiophoreHarmonizer2.moodPowerFactor}");
+                    }
+                    else
+                    {
+                        float targetMoodPowerFactor = Mathf.Min(moodProxy * 1.2f, 12f); // moodProxy normalized to 1.2 times its value and clamped at 12
+                        existingHarmonizerThought.moodPowerFactor = Mathf.Lerp(existingHarmonizerThought.moodPowerFactor, targetMoodPowerFactor, 0.1f);
+
+                        Log.Message($"In AffectPawnsWithMoodProxy(): moodProxy = {moodProxy}, moodPowerFactor = {existingHarmonizerThought.moodPowerFactor}");
+                    }
                 }
             }
         }
+
+
 
     }
 }

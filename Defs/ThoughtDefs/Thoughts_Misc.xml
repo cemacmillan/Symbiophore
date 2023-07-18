@@ -3,18 +3,17 @@
     <ThoughtDef>
         <defName>SymbiophorePsychicHarmonization</defName>
         <label>Symbiophore psychic emanation</label>
-        <durationDays>1</durationDays>
-        <thoughtClass>Thought_PsychicHarmonizer</thoughtClass>
-    <effectMultiplyingStat>PsychicSensitivity</effectMultiplyingStat>
-    <stackLimit>1</stackLimit>
+        <durationDays>0.1</durationDays>
+        <effectMultiplyingStat>PsychicSensitivity</effectMultiplyingStat>
+        <stackLimit>1</stackLimit>
         <nextThought>SymbiophorePsychicHarmonization</nextThought>
-        <stackedEffectMultiplier>1</stackedEffectMultiplier>
+        <stackedEffectMultiplier>0.25</stackedEffectMultiplier>
         <thoughtClass>DIL_Symbiophore.Thought_SymbiophoreHarmonizer</thoughtClass>
         <stages>
             <li>
                 <label>symbiophore psychic harmonization</label>
                 <description>This pawn is affected by proximity to a symbiophore</description>
-                <baseMoodEffect>3</baseMoodEffect>
+                <baseMoodEffect>1</baseMoodEffect>
             </li>
         </stages>
     </ThoughtDef>
