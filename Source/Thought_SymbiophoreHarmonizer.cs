@@ -19,7 +19,7 @@ namespace DIL_Symbiophore
         {
             float baseMoodEffect = Mathf.Min(base.MoodOffset(), 1f); // Ensure baseMoodEffect does not exceed 1
             float moodOffset = 12 * baseMoodEffect; // Scale the effect so that it's a value between 0 and 12
-            Log.Message($"In MoodOffset(): baseMoodEffect = {baseMoodEffect}, moodOffset = {moodOffset}");
+           // Log.Message($"In MoodOffset(): baseMoodEffect = {baseMoodEffect}, moodOffset = {moodOffset}");
             return moodOffset;
         }
 

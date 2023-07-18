@@ -13,7 +13,6 @@ namespace DIL_Symbiophore
         public override void CompPostMake()
         {
             base.CompPostMake();
-            // Perform any initialization logic here
             moodProxy = 1.0f;
         }
 
@@ -48,25 +47,25 @@ namespace DIL_Symbiophore
             // Check if the symbiophore is outside
             if (!pawn.Position.Roofed(pawn.Map))
             {
-                moodProxy *= 1.1f;  // Increase mood proxy by 10%
+                moodProxy *= 1.1f;  
             }
 
             // Check if the symbiophore is eating
             if (pawn.CurJobDef == JobDefOf.Ingest)
             {
-                moodProxy *= 1.1f;  // Increase mood proxy by 10%
+                moodProxy *= 1.1f;  
             }
 
             // Check if the symbiophore is hungry
             if (pawn.needs.food.CurLevelPercentage < 0.2f)
             {
-                moodProxy *= 0.8f;  // Decrease mood proxy by 20%
+                moodProxy *= 0.8f;  
             }
 
             // Check if the symbiophore is tired and can't sleep
             if (pawn.needs.rest.CurLevelPercentage < 0.2f && !RestUtility.CanFallAsleep(pawn))
             {
-                moodProxy *= 0.9f;  // Decrease mood proxy by 10%
+                moodProxy *= 0.9f;  
             }
 
             // Check if the symbiophore is in an uncomfortable temperature
@@ -79,9 +78,6 @@ namespace DIL_Symbiophore
             float assumedNeutralMood = 0.5f; // Assuming mood is on a scale from 0 to 1
             moodProxy = moodProxy / (1.0f + (1 - assumedNeutralMood));
 
-
-
-            // Ensure mood proxy doesn't go below 0
             moodProxy = Mathf.Max(moodProxy, 0f);
             // Check if the pawn's map or the list of all spawned pawns are null
             if (pawn.Map == null || pawn.Map.mapPawns.AllPawnsSpawned == null)
@@ -132,14 +128,14 @@ namespace DIL_Symbiophore
                         pawn.needs.mood.thoughts.memories.TryGainMemory(thought_SymbiophoreHarmonizer2);
 
                         // Log the mood effect being applied
-                        Log.Message($"Applying mood effect to pawn {pawn.Name}: moodProxy = {moodProxy}, moodPowerFactor = {thought_SymbiophoreHarmonizer2.moodPowerFactor}");
+                        //Log.Message($"Applying mood effect to pawn {pawn.Name}: moodProxy = {moodProxy}, moodPowerFactor = {thought_SymbiophoreHarmonizer2.moodPowerFactor}");
                     }
                     else
                     {
                         float targetMoodPowerFactor = Mathf.Min(moodProxy * 1.2f, 12f); // moodProxy normalized to 1.2 times its value and clamped at 12
                         existingHarmonizerThought.moodPowerFactor = Mathf.Lerp(existingHarmonizerThought.moodPowerFactor, targetMoodPowerFactor, 0.1f);
 
-                        Log.Message($"In AffectPawnsWithMoodProxy(): moodProxy = {moodProxy}, moodPowerFactor = {existingHarmonizerThought.moodPowerFactor}");
+                       // Log.Message($"In AffectPawnsWithMoodProxy(): moodProxy = {moodProxy}, moodPowerFactor = {existingHarmonizerThought.moodPowerFactor}");
                     }
                 }
             }
