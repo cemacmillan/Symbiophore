@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<IncidentDef>
+    <defName>Incident_SymbiophoreJoin</defName>
+    <label>symbiophore join</label>
+    <description>A lost symbiophore has wandered into your colony.</description>
+    <category>Misc</category>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>DIL_Symbiophore.IncidentWorker_SymbiophoreJoin</workerClass>
+    <baseChance>0.2</baseChance>
+</IncidentDef>
+</Defs>

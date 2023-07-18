@@ -58,6 +58,8 @@
             <bloodDef>Filth_BloodInsect</bloodDef>
             <meatColor>(160,168,139)</meatColor>
             <meatMarketValue>0.5</meatMarketValue>
+             <useMeatFrom>Insect</useMeatFrom>
+             <useLeatherFrom>Insect</useLeatherFrom>
             <foodType>OmnivoreAnimal, AnimalProduct</foodType>
             <manhunterOnDamageChance>0.05</manhunterOnDamageChance>
             <herdAnimal>false</herdAnimal>
@@ -111,6 +113,7 @@
         <tradeTags>
             <li>AnimalPet</li>
             <li>AnimalExotic</li>
+            <li>AnimalUncommon</li>
         </tradeTags>
     </ThingDef>
     <PawnKindDef ParentName="AnimalKindBase">

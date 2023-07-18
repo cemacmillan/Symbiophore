@@ -8,6 +8,12 @@ namespace DIL_Symbiophore
 {
     public class Comp_Symbiophore : ThingComp
     {
+
+
+        private int timesAbsorbedToday = 0;
+        private float lastAbsorptionDay = -1f;
+        private const int maxAbsorptionsPerDay = 2; // Maximum absorption times per day
+
         public Comp_Symbiophore()
         {
            // Log.Message("Comp_Symbiophore instantiated");  // Log when the class is instantiated
@@ -44,6 +50,20 @@ namespace DIL_Symbiophore
 
         private void AbsorbPsychicEntropyFromPawn(Pawn targetPawn)
         {
+            // Check if it's a new day
+            float currentDay = GenDate.DaysPassedFloat;
+            if (lastAbsorptionDay != currentDay)
+            {
+                lastAbsorptionDay = currentDay;
+                timesAbsorbedToday = 0;
+            }
+
+            // Check if the maximum absorption limit is reached for the day
+            if (timesAbsorbedToday >= maxAbsorptionsPerDay)
+            {
+                return;
+            }
+
             // Check if the target pawn is null or doesn't have psychic entropy
             if (targetPawn == null || targetPawn.psychicEntropy == null)
             {
@@ -60,7 +80,11 @@ namespace DIL_Symbiophore
             {
                 comp.moodProxy += 0.1f;  // Replace 0.1f with the amount to increase the mood proxy
             }
+
+            // Increase the number of absorptions for the day
+            timesAbsorbedToday++;
         }
+
     }
 
     public class CompProperties_Symbiophore : CompProperties
