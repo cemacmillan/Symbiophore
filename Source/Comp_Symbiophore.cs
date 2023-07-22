@@ -21,7 +21,6 @@ namespace DIL_Symbiophore
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
         {
-           // Log.Message("CompGetGizmosExtra called for " + this.parent.Label);  // Log when the method is called
 
             foreach (Gizmo g in base.CompGetGizmosExtra())
             {

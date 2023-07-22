@@ -20,7 +20,7 @@
                 <compClass>DIL_Symbiophore.SymbiophoreMoodTracker</compClass>
             </li>
         </comps>
-        <uiIconScale>2</uiIconScale>
+        <uiIconScale>1</uiIconScale>
         <tools>
             <li>
                 <label>Mandibles</label>
@@ -58,8 +58,7 @@
             <bloodDef>Filth_BloodInsect</bloodDef>
             <meatColor>(160,168,139)</meatColor>
             <meatMarketValue>0.5</meatMarketValue>
-             <useMeatFrom>Insect</useMeatFrom>
-             <useLeatherFrom>Insect</useLeatherFrom>
+            <useMeatFrom>Megaspider</useMeatFrom>
             <foodType>OmnivoreAnimal, AnimalProduct</foodType>
             <manhunterOnDamageChance>0.05</manhunterOnDamageChance>
             <herdAnimal>false</herdAnimal>

@@ -6,14 +6,14 @@ namespace DIL_Symbiophore
     [DefOf]
     public static class DefOfs
     {
-        public static NeedDef Mood;
+        public static ThoughtDef SymbiophorePsychicHarmonization;
 
         static DefOfs()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(DefOfs));
-            Mood = DefOf_Mood.Mood;
         }
     }
 }
+
 
 
