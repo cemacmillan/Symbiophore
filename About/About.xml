@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Symbiophore and Silk</name>
+	<name>Symbiophore</name>
 	<author>CEM</author>
 	<packageId>cem.symbiophoresilk</packageId>
-	<description>Introducing the Symbiophore, an extraordinary creature from the dense jungles, distinguished by its rare psychic abilities. Symbiophores are not only excellent companions but they also harmonize with the psychic energy of your colonists, uplifting their mood and well-being. These creatures also serve as unique psychic entropy sponges, relieving your psycasters of excess psychic strain. Their need for human interaction makes them ideal pets, requiring constant social engagement to survive. Can your colony embrace this intriguing symbiotic relationship?</description>
+	<description>Introducing the Symbiophore, an extraordinary caterpillar like creature from the dense jungles, distinguished by its rare psychic abilities. Symbiophores are not only excellent pets but they also harmonize with the psychic energy of your colonists, uplifting their mood and well-being. These creatures also serve as unique psychic entropy sponges, relieving your psycasters of excess psychic strain.
+
+[spoiler]
+What do they actually do?
+[list]
+	[*] psychic harmonizer like function tuned to symbiophore's comfort and well-being.
+	[*] can absorb psychic entropy (neural heat) twice per day.
+	[*] combat effectiveness similar to a cat but slower.
+[/list]
+[/spoiler]
+
+An appropriate companion for your psycasting pawns.
+
+How to acquire a symbiophore:
+[list]
+	[*] animal traders of exotic and uncommon animals.
+	[*] go to the jungle and tame one.
+	[*] rarely, a lost symbiophore may appear and join your colony (if none are present on the map).
+[/list]
+</description>
 
 	<supportedVersions>
 		<li>1.4</li>

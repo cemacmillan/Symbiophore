@@ -11,7 +11,7 @@ namespace DIL_Symbiophore
 
             if (parent is Pawn pawn && pawn.def.defName == "Symbiophore" && !pawn.Dead)
             {
-                Log.Message("Symbiophore spawned.");
+               
 
                 // Apply the hediff to the symbiophore pawn
                 HediffDef hediffDef = DefDatabase<HediffDef>.GetNamed("SymbiophorePsychicHarmonization");
@@ -19,7 +19,7 @@ namespace DIL_Symbiophore
                 {
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
                     pawn.health.AddHediff(hediff);
-                    Log.Message("Psychic harmonization applied to symbiophore.");
+                   
                 }
                 else
                 {

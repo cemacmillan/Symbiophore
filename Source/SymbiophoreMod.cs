@@ -11,7 +11,7 @@ namespace DIL_Symbiophore
 
             var harmony = new Harmony("cem.symbiophore");
             harmony.PatchAll();
-            Log.Message("Symbiophore mod v0.0.3.");
+            Log.Message("Symbiophore mod v1.0.3.");
         }
     }
 }
