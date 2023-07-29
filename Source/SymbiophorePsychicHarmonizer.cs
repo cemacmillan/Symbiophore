@@ -64,7 +64,7 @@ namespace DIL_Symbiophore
 
             foreach (Pawn pawn in pawns)
             {
-                if (pawn == null || symbiophore == pawn || !pawn.RaceProps.Humanlike || pawn.needs?.mood?.thoughts == null || pawn.Position.DistanceTo(symbiophore.Position) > 30)
+                if (pawn == null || symbiophore == pawn || !pawn.RaceProps.Humanlike || pawn.needs?.mood?.thoughts == null || pawn.Position.DistanceTo(symbiophore.Position) > 24)
                 {
                     continue;
                 }

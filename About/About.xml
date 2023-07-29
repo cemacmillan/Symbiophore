@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
 	<name>Symbiophore</name>
-	<author>CEM</author>
-	<packageId>cem.symbiophoresilk</packageId>
-	<description>Introducing the Symbiophore, an extraordinary caterpillar like creature from the dense jungles, distinguished by its rare psychic abilities. Symbiophores are not only excellent pets but they also harmonize with the psychic energy of your colonists, uplifting their mood and well-being. These creatures also serve as unique psychic entropy sponges, relieving your psycasters of excess psychic strain.
+	<author>cem</author>
+	<packageId>cem.symbiophore</packageId>
+	<description>Introducing the Symbiophore, an extraordinary caterpillar like creature from the dense jungles, distinguished by its rare psychic abilities. Symbiophores are not only excellent pets but they also harmonize with the psychic energy of your colonists, uplifting their mood and well-being. These creatures also serve as unique psychic entropy sponges, relieving your psycasters of excess neural heat.
 
 [spoiler]
 What do they actually do?
 [list]
-	[*] psychic harmonizer like function tuned to symbiophore's comfort and well-being.
+	[*] psychic harmonizer like function tuned to symbiophore's comfort and well-being. Range is slightly shorter than the harmonizer.
 	[*] can absorb psychic entropy (neural heat) twice per day.
 	[*] combat effectiveness similar to a cat but slower.
 [/list]
@@ -22,6 +22,13 @@ How to acquire a symbiophore:
 	[*] go to the jungle and tame one.
 	[*] rarely, a lost symbiophore may appear and join your colony (if none are present on the map).
 [/list]
+
+Being creatures of the hottest jungle, the symbiophore prefers warmer temperatures and won't be happy if it gets cold, just as it won't be happy if it has nothing to eat (Animal Omnivore, Ovivore).
+
+I'm still balancing and working on this creature, so it may gain capacities or new tricks in the future.
+
+Support my work on [url=https://ko-fi.com/N4N4NFFPZ]Support my work via ko-fi.com[/url].
+
 </description>
 
 	<supportedVersions>

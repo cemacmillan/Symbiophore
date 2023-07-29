@@ -1,0 +1,442 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"develo",
+				"developmentalStageFilter"
+			],
+			[
+				"project",
+				"project_id"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"condens",
+				"condensedWordCounts"
+			],
+			[
+				"get",
+				"getTopWords"
+			],
+			[
+				"consol",
+				"console.log"
+			],
+			[
+				"di",
+				"dIl_Vexi_TailVexine"
+			],
+			[
+				"conso",
+				"console.log"
+			],
+			[
+				"draw",
+				"drawOffsetSouth"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"open",
+				"OpenAI: New Message"
+			],
+			[
+				"ope",
+				"OpenAI: New Message"
+			],
+			[
+				"settings packa",
+				"Preferences: Package Control Settings"
+			],
+			[
+				"prett",
+				"Preferences: Settings"
+			],
+			[
+				"vue",
+				"VUEFormatter"
+			],
+			[
+				"pretti",
+				"HTMLPrettify"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Package Control: Install Package"
+			],
+			[
+				"Term",
+				"Terminus: Open Default Shell in Panel"
+			],
+			[
+				"diff",
+				"Set Syntax: Diff"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"te",
+				"Terminus: Toggle Panel"
+			],
+			[
+				"terminus",
+				"Terminus: Open Default Shell in Panel"
+			],
+			[
+				"",
+				"Build: New Build System"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/cem/projects/ChinampaFarming",
+		"/Users/cem/projects/ChinampaFarming/About",
+		"/Users/cem/projects/ChinampaFarming/Assemblies",
+		"/Users/cem/projects/ChinampaFarming/Defs",
+		"/Users/cem/projects/ChinampaFarming/Defs/Buildings",
+		"/Users/cem/projects/ChinampaFarming/Defs/TerrainAffordanceDefs",
+		"/Users/cem/projects/ChinampaFarming/Languages",
+		"/Users/cem/projects/ChinampaFarming/Languages/English",
+		"/Users/cem/projects/ChinampaFarming/Languages/English/DefInjected",
+		"/Users/cem/projects/ChinampaFarming/Languages/English/Keyed"
+	],
+	"file_history":
+	[
+		"/Users/cem/projects/Symbiophore/About/About.xml",
+		"/Users/cem/projects/ChinampaFarming/About/About.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/workshop/content/294100/2636329500/1.4/Defs/MemeDefs/Memes_Misc.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/workshop/content/294100/2636329500/1.4/Defs/PreceptDefs/Precepts_PermanentBases.xml",
+		"/Users/cem/projects/Symbiophore/Defs/ThingDefs_Races/Races_Animal_Symbiophore.xml",
+		"/Users/cem/projects/ChinampaFarming/Defs/Buildings/Buildings_Growers.xml",
+		"/Users/cem/projects/ChinampaFarming/README.md",
+		"/Users/cem/projects/Symbiophore/Source/SymbiophorePsychicHarmonizer.cs",
+		"/Users/cem/projects/ChinampaFarming/Source/README.md",
+		"/Users/cem/projects/ChinampaFarming/Assemblies/README.md",
+		"/Users/cem/projects/ChinampaFarming/Source/BuildingChinampa.cs",
+		"/Users/cem/projects/Symbiophore/Defs/IncidentDefs/IncidentDefs_Misc.xml",
+		"/Users/cem/projects/Symbiophore/Source/Comp_Symbiophore.cs",
+		"/Users/cem/projects/Symbiophore/Defs/ThoughtDefs/Thoughts_Misc.xml",
+		"/Users/cem/projects/Symbiophore/README.md",
+		"/Users/cem/Library/Application Support/Steam/steamapps/workshop/content/294100/2441132298/About/About.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/workshop/content/294100/1957158779/1.4/Defs/Buildings/Buildings_Growers.xml",
+		"/Users/cem/projects/ChinampaFarming/Defs/TerrainAffordanceDefs/TerrainAffordance_Misc.xml",
+		"/Users/cem/projects/ChinampaFarming/Source/ChinampasFarming.sln",
+		"/Users/cem/projects/Symbiophore/Patches/WildAnimals_Misc.xml",
+		"/Users/cem/projects/Symbiophore/loadFolders.xml",
+		"/Users/cem/projects/Symbiophore/Defs/HediffDefs/SymbiophorePsychicHarmonization.xml",
+		"/Users/cem/projects/Symbiophore/Defs/ThingDefs_Races/Races_Animal_Insect.xml",
+		"/Users/cem/projects/Symbiophore/Defs/HediffDefs/HediffDef_SymbiophorePsychicHarmonization.xml",
+		"/Users/cem/projects/Symbiophore/Defs/NeedDefs/Need_Mood.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/ThingDefs_Plants/Plants_Bases.xml",
+		"/Users/cem/projects/PositiveConnections/About/About.xml",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/BrieflyDespawnedUtil.cs",
+		"/Users/cem/projects/Goldenbell/About/About.xml",
+		"/Users/cem/projects/Goldenbell/source/.vs/Goldenbell/xs/UserPrefs.xml",
+		"/Users/cem/projects/Goldenbell/1.4/Defs/Drugs/GoldenbellTea.xml",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Goldenbell.csproj",
+		"/Users/cem/projects/Goldenbell/1.4/Defs/MapComponentDefs/GoldenbellMapComponent.xml",
+		"/Users/cem/projects/Goldenbell/1.4/Defs/HediffsDefs/GoldenbellHediff.xml",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/PawnUtility.cs",
+		"/Users/cem/projects/Goldenbell/1.4/Defs/MentalStateDefs/MentalStates.xml",
+		"/Users/cem/projects/Goldenbell/1.4/Defs/ThoughtDefs/Thoughts.xml",
+		"/Users/cem/projects/Goldenbell/source/.vs/Goldenbell/xs/project-cache/Goldenbell-Debug.json",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/GoldenBellDefOf.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/GoldenBellMod.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/GoldenBellUtility.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/MentalStateWorker_GoldenBell.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/MentalStateWorker_GoldenBellNavelGazing.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Components/GoldenbellGameComponent.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Components/GoldenBellMapComponent.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Components/StatPart_GoldenBellPsychicSensitivity.cs",
+		"/Users/cem/projects/Goldenbell/MentalStateWorker_GoldenBell.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/MentalStateWorker_GoldenBell.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/GoldenBellPsychicSensitivityComp.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/GoldenBellMentalState.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/HarmonyPatches/GoldenbellPatch.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/GoldenBellHediff.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/GoldenBellHediffComp.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/Health/GoldenBellHediffCompProperties.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/ManhunterPackIncidentUtility.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/CompAbilityEffect_RaidEnemy.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/Verse/Hediff_Pregnant.cs",
+		"/Users/cem/projects/Goldenbell/source/Goldenbell/ThoughtWorker_CogniquilMoodBoost.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/InteractionDef.cs",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections/InteractionWorker_SharedPassion.cs",
+		"/Users/cem/projects/PositiveConnections/1.4/Defs/ThoughtDefs/Thoughts.xml",
+		"/Users/cem/projects/PositiveConnections/1.4/Defs/InteractionDefs/Interactions.xml",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/GeneDefs/Vexi_BodyTypes.xml",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/GeneDefs/Vexi_Endogenes.xml",
+		"/Users/cem/projects/Vexine_VexiSpecies/Source/Vexine/ModExtensions/GenomeExtension.cs",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/HediffDefs/VexineGallBladder.xml",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/ThoughtMaker.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/InteractionWorker_Breakup.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/RimWorld/FactionUtility.cs",
+		"/Volumes/Core/RWSourceCodeCurrent/Verse/PlayLog.cs",
+		"/Users/cem/projects/Vexine_DarkStory/Source/Vexine.DarkStory/Vexine.DarkStory/HarmonyPatches/TributeCollectorPatch.cs",
+		"/Users/cem/projects/Vexine_DarkStory/Source/Vexine.DarkStory/Vexine.DarkStory/FactionRellationChanger.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/PregnancyUtility.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/GeneUtility.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/HumanEmbryo.cs",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections/InteractionWorker_Compliment.cs",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections/FactionRelationChanger.cs",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/GeneDefs/HeadTypeDefs.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/HediffDefs/BodyParts/Hediffs_BodyParts_Natural.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/Pawn_RoyaltyTracker.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/Alert_RoyalNoAcceptableFood.cs",
+		"/Users/cem/projects/Vexine_DarkStory/About/About.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Royalty/Defs/PawnKinds/PawnKinds_Empire.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/ITab_Pawn_Visitor.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/Alert_ColonistsIdle.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/RoyalTitle.cs",
+		"/Users/cem/projects/Vexine_DarkStory/LoadFolders.xml",
+		"/Users/cem/projects/Vexine_DarkStory/Source/Vexine.DarkStory/Vexine.DarkStory/DarkStoryMod.cs",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/PreceptDefs/Precepts_Slavery.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Royalty/Defs/FactionDefs/Faction_Empire.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/TraderKindDef.cs",
+		"/Users/cem/projects/Vexine_DarkStory/1.4/Patches/untitled.xml",
+		"/Users/cem/projects/Vexine_VexiSpecies/Source/Vexine/Incidents/TCAEmpire.cs",
+		"/Users/cem/projects/PsychicAnimals/1.4/Defs/FeedFruitOnAnimal.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Royalty/Defs/IncidentDefs/Incidents_Map_Special.xml",
+		"/Users/cem/projects/Vexine_DarkStory/1.4/Patches/TributeCollectorFreq.xml",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections.sln",
+		"/Users/cem/projects/Vexine_DarkStory/Source/Vexine.DarkStory/Vexine.DarkStory/Vexine.DarkStory.csproj",
+		"/Users/cem/projects/Vexine_DarkStory/1.4/Defs/FactionDefs/Player.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/Faction.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/CompDissolutionEffect_Goodwill.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/CompAbilityEffect_Flashstorm.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/DiplomacyTuning.cs",
+		"/Users/cem/projects/Animalitor/1.4/Defs/RecipeDefs/Recipe_AnimalitorImplant.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/Goodwill/GoodwillSituations_Misc.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/Alert_TimedMakeFactionHostile.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/FactionRelationKind.cs",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/BackstoryDefs/VexiSpecific.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/JobDriver_Lovin.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/IndividualThoughtToAdd.cs",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Biotech/Defs/ThoughtDefs/Thoughts_Situation_Social.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Ideology/Defs/InteractionDefs/Interactions_Social.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Biotech/Defs/ThoughtDefs/Thoughts_Memory_Social.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Biotech/Defs/ThoughtDefs/Thoughts_Memory_Death.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/InteractionDefs/Interactions_Animal.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/InteractionDefs/Interactions_Social.xml",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Biotech/Defs/InteractionDefs/Interactions_Social.xml",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/CompAbilityEffect_BloodfeederBite.cs",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/SanguophageUtility.cs",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/InteractionDefs/Interactions_Prisoner.xml",
+		"/Users/cem/projects/RW1.4-Decompile/Verse/PawnGenerator.cs",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections/PositiveConnections.csproj",
+		"/Users/cem/projects/Animalitor/Animalitor/Animalitor/Animalitor.csproj",
+		"/Users/cem/projects/RW1.4-Decompile/RimWorld/TraitSet.cs",
+		"/Users/cem/Library/Application Support/Steam/steamapps/common/RimWorld/RimWorldMac.app/Data/Core/Defs/TraitDefs/Traits_Singular.xml",
+		"/Users/cem/projects/PositiveConnections/PositiveConnections.sln_orig",
+		"/Users/cem/projects/PositiveConnections/Animalitor.sln",
+		"/Users/cem/projects/Vexine_VexiSpecies/1.4/Defs/IncidentDef/FleaInfestation.xml"
+	],
+	"find":
+	{
+		"height": 59.0
+	},
+	"find_in_files":
+	{
+		"height": 257.0,
+		"where_history":
+		[
+			"/Users/cem/Library/Application Support/Steam/steamapps/workshop/content/294100/2441132298/1.4,<project filters>",
+			"/Users/cem/projects/Symbiophore/Source,<project filters>",
+			"/Users/cem/projects/Symbiophore,<project filters>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"insect",
+			"meat",
+			"giraffe",
+			"pet",
+			"entropy",
+			"moodPower",
+			"thoughtClass",
+			"Yournamespace",
+			"edifice",
+			"manhunt",
+			"food",
+			"Need_CustomMood",
+			"_Mood",
+			"Custom_Mood",
+			"CustomNeed",
+			"Custom_Need"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 59.0
+	},
+	"input":
+	{
+		"height": 95.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.LSP Log Panel":
+	{
+		"height": 0.0
+	},
+	"output.OpenAI Chat":
+	{
+		"height": 106.0
+	},
+	"output.diagnostics":
+	{
+		"height": 0.0
+	},
+	"output.diff_views":
+	{
+		"height": 376.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "untitled.sublime-project",
+	"replace":
+	{
+		"height": 112.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 875.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/projects/guithing/jbs.sublime-project"
+			]
+		],
+		"width": 665.0
+	},
+	"select_symbol":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 1036.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 589.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
