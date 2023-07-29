@@ -9,6 +9,7 @@ namespace DIL_Symbiophore
     {
         private int tickCounter = 0;
         public float moodProxy = 6.0f;
+        const int inRange = 24 * 24; // symbiophore coverage
 
         public override void CompPostMake()
         {
@@ -64,7 +65,7 @@ namespace DIL_Symbiophore
 
             foreach (Pawn pawn in pawns)
             {
-                if (pawn == null || symbiophore == pawn || !pawn.RaceProps.Humanlike || pawn.needs?.mood?.thoughts == null || pawn.Position.DistanceTo(symbiophore.Position) > 24)
+                if (pawn == null || symbiophore == pawn || !pawn.RaceProps.Humanlike || pawn.needs?.mood?.thoughts == null || pawn.Position.DistanceToSquared(symbiophore.Position) > inRange)
                 {
                     continue;
                 }

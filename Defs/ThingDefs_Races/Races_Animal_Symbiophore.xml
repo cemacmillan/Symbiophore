@@ -64,10 +64,10 @@
             <herdAnimal>false</herdAnimal>
             <baseBodySize>0.1</baseBodySize>
             <baseHungerRate>0.1</baseHungerRate>
-            <baseHealthScale>1</baseHealthScale>
+            <baseHealthScale>1.5</baseHealthScale>
             <lifeExpectancy>80</lifeExpectancy>
             <wildness>0.35</wildness>
-            <petness>0.5</petness>
+            <petness>0.85</petness>
             <trainability>Advanced</trainability>
             <nuzzleMtbHours>12</nuzzleMtbHours>
             <gestationPeriodDays>15</gestationPeriodDays>
