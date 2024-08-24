@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <NeedDef>
+    <defName>SymbiophoreMood</defName>
+    <needClass>DIL_Symbiophore.SymbiophoreCustomNeed</needClass>
+    <label>Mood</label>
+    <description>Apparent mood level for Symbiophores.</description>
+    <listPriority>600</listPriority>
+    <major>true</major>
+    <showForCaravanMembers>true</showForCaravanMembers>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <showUnitTicks>true</showUnitTicks>
+  </NeedDef>
+  <NeedDef>
+    <defName>SymbiophoreFullness</defName>
+    <needClass>DIL_Symbiophore.SymbiophoreCustomNeed</needClass>
+    <label>Silk Fullness</label>
+    <description>Fullness level for Symbiophores.</description>
+    <listPriority>300</listPriority>
+    <major>false</major>
+    <showForCaravanMembers>false</showForCaravanMembers>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+  </NeedDef>
+</Defs>

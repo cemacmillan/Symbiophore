@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<Authors>Put your name here</Authors>
+		<Authors>cem</Authors>
 
 		<!-- <Copyright>Copyright (c) 2023 authorName</Copyright> --> <!-- Optional copyright field -->
 
@@ -12,7 +12,7 @@
 		<LangVersion>preview</LangVersion> <!-- This is the C# version. Preview is the newest version with the most features -->
 		<!-- Details here: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version -->
 
-		<OutDir>..\Assemblies\</OutDir> <!-- The output path for dll files  -->
+		<OutDir>..\1.5\Assemblies\</OutDir> <!-- The output path for dll files  -->
 
 		<!-- <Nullable>enable</Nullable> --> <!-- Optional nullable analysis. -->
 		<!-- Details here: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types -->
@@ -31,7 +31,7 @@
 	<!-- Down here we have references to dependencies -->
 	<ItemGroup>
 		<!-- RimWorld itself -->
-		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.*" /> <!-- Version="1.4.*" targets the newest stable 1.4 build. -->
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.4104" /> <!-- Version="1.4.*" targets the newest stable 1.4 build. -->
 		<!-- To include beta builds, append -* to the version, like this: Version="1.4.*-*" -->
 		<!-- To target a beta version of 1.5, as an example, you'd write this: Version="1.5.*-*" -->
 
@@ -61,8 +61,19 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Harmony\" />
+	  <None Remove="Components\" />
+	  <None Remove="JobDrivers\" />
+	  <None Remove="WorkGivers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Harmony\" />
+	  <Folder Include="Components\" />
+	  <Folder Include="JobDrivers\" />
+	  <Folder Include="WorkGivers\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="ITabSymbiophoreNeeds.cs" />
+	  <Compile Remove="Harmony\SymbiophoreDefGenPatch.cs" />
+	  <Compile Remove="CustomNeedDefs.cs" />
 	</ItemGroup>
 </Project>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+<AbilityDef>
+  <defName>OrganEjection</defName>
+  <label>gullet ejection</label>
+  <description>The symbiophore expels its stomach and its digestive juices to stun and cause severe damage to the target. Effective against both organic and mechanoid targets.</description>
+  <iconPath>UI/Abilities/OrganEjection</iconPath>
+  <cooldownTicksRange>30000</cooldownTicksRange>
+  <aiCanUse>true</aiCanUse>
+  <displayOrder>300</displayOrder>
+  <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+  <verbProperties>
+    <verbClass>Verb_CastAbility</verbClass>
+    <range>10</range>
+    <warmupTime>0.5</warmupTime>
+    <soundCast>AgonyPulse_Cast</soundCast>
+    <targetParams>
+     <canTargetLocations>false</canTargetLocations>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetAnimals>true</canTargetAnimals>
+        <canTargetBuildings>true</canTargetBuildings>
+        <canTargetHumans>true</canTargetHumans>
+        <canTargetMechs>true</canTargetMechs>
+        <canTargetSelf>false</canTargetSelf>
+    </targetParams>
+  </verbProperties>
+  <comps>
+    <li Class="CompProperties_AbilitySprayLiquid">
+      <projectileDef>Proj_OrganEjection</projectileDef>
+      <numCellsToHit>9</numCellsToHit>
+      <sprayEffecter>AcidSpray_Directional</sprayEffecter>
+    </li>
+  </comps>
+</AbilityDef>
+
+<ThingDef>
+  <defName>Proj_OrganEjection</defName>
+  <label>expelled organ</label>
+  <thingClass>Projectile_Liquid</thingClass>
+  <category>Projectile</category>
+  <tickerType>Normal</tickerType>
+  <altitudeLayer>Projectile</altitudeLayer>
+  <useHitPoints>False</useHitPoints>
+  <neverMultiSelect>True</neverMultiSelect>
+  <graphicData>
+    <texPath>Things/Projectile/ExpelledOrgan</texPath>
+    <graphicClass>Graphic_Single</graphicClass>
+    <shaderType>MoteGlow</shaderType>
+    <drawSize>0.35</drawSize>
+  </graphicData>
+  <projectile>
+    <damageDef>OrganEjectionDamage</damageDef>
+    <speed>25</speed>
+    <damageAmountBase>50</damageAmountBase>
+    <arcHeightFactor>0.3</arcHeightFactor>
+    <armorPenetrationBase>1.0</armorPenetrationBase>
+    <stoppingPower>1</stoppingPower>
+    <shadowSize>0</shadowSize>
+    <filth>Filth_SpentAcid</filth>
+    <filthCount>1</filthCount>
+  </projectile>
+</ThingDef>
+
+<DamageDef>
+  <defName>OrganEjectionDamage</defName>
+  <label>organ ejection damage</label>
+  <workerClass>DamageWorker_AddInjury</workerClass>
+  <impactSoundType>Toxic</impactSoundType>
+  <defaultDamage>50</defaultDamage>
+  <armorCategory>Blunt</armorCategory>
+  <hediff>Burn</hediff>
+</DamageDef>
+
+</Defs>

@@ -8,13 +8,20 @@ namespace DIL_Symbiophore
     public class SymbiophorePsychicHarmonizer : HediffComp
     {
         private int tickCounter = 0;
-        public float moodProxy = 6.0f;
-        const int inRange = 24 * 24; // symbiophore coverage
+        private const int inRange = 24 * 24; // symbiophore coverage
+        private const int effectInterval = 600; // 600 ticks = 10 seconds in-game
+        private float previousMoodProxy = 6.0f;
+
+        public float MoodProxy
+        {
+            get => MoodProxyManager.GetMoodProxy(this);
+            set => MoodProxyManager.SetMoodProxy(this, value);
+        }
 
         public override void CompPostMake()
         {
             base.CompPostMake();
-            moodProxy = 6.0f;
+            MoodProxy = 6.0f;
         }
 
         public override void CompPostTick(ref float severityAdjustment)
@@ -22,7 +29,7 @@ namespace DIL_Symbiophore
             base.CompPostTick(ref severityAdjustment);
 
             tickCounter++;
-            if (tickCounter < 600)  // Only apply the mood effect every 600 ticks (1 real-time second at normal speed)
+            if (tickCounter < effectInterval)
             {
                 return;
             }
@@ -42,8 +49,17 @@ namespace DIL_Symbiophore
                 return;
             }
 
-            moodProxy = CalculateSymbiophoreMoodProxy(pawn);
-            //Log.Message($"Mood proxy after calculation for pawn {pawn.Name}: {moodProxy}");
+            previousMoodProxy = MoodProxy;
+            MoodProxy = CalculateSymbiophoreMoodProxy(pawn);
+
+            // Ignore changes to exactly 1
+            if (MoodProxy == 1.0f)
+            {
+                MoodProxy = previousMoodProxy;
+            }
+
+            // Smoothing adjustment
+            MoodProxy = Mathf.Lerp(previousMoodProxy, MoodProxy, 0.2f);
 
             // Check if the list of all spawned pawns are null
             if (pawn.Map.mapPawns.AllPawnsSpawned == null)
@@ -51,97 +67,135 @@ namespace DIL_Symbiophore
                 return;
             }
 
+            // Log the moodProxy change if it deviates significantly and logging is enabled
+            if (SymbiophoreMod.settings.EnableLogging && Mathf.Abs(MoodProxy - previousMoodProxy) > 1.0f)
+            {
+                Log.Message($"MoodProxy changed from {previousMoodProxy} to {MoodProxy} for {pawn.Name} (Temperature: {pawn.AmbientTemperature}, Rain: {pawn.Map.weatherManager.RainRate}, Unroofed: {!pawn.Position.Roofed(pawn.Map)}, Food: {pawn.needs.food.CurLevelPercentage}, Rest: {pawn.needs.rest.CurLevelPercentage})");
+            }
+
             // Affect other pawns with the mood proxy
-            List<Pawn> pawns = pawn.Map.mapPawns.AllPawnsSpawned;
-            AffectPawnsWithMoodProxy(pawn, pawns, moodProxy);
+            List<Pawn> pawns = (List<Pawn>)pawn.Map.mapPawns.AllPawnsSpawned;
+            AffectPawnsWithMoodProxy(pawn, pawns, MoodProxy);
         }
 
         private void AffectPawnsWithMoodProxy(Pawn symbiophore, List<Pawn> pawns, float moodProxy)
         {
-            if (symbiophore == null || pawns == null || symbiophore.Downed || symbiophore.MentalState != null || symbiophore.Dead)
+            if (symbiophore == null || pawns == null || symbiophore.Downed)
             {
                 return;
             }
 
             foreach (Pawn pawn in pawns)
             {
-                if (pawn == null || symbiophore == pawn || !pawn.RaceProps.Humanlike || pawn.needs?.mood?.thoughts == null || pawn.Position.DistanceToSquared(symbiophore.Position) > inRange)
+                if (pawn != symbiophore && !pawn.Downed && pawn.Map == symbiophore.Map)
                 {
-                    continue;
-                }
-
-                Thought_SymbiophoreHarmonizer existingHarmonizerThought = pawn.needs.mood.thoughts.memories.GetFirstMemoryOfDef(DIL_Symbiophore.DefOfs.SymbiophorePsychicHarmonization) as Thought_SymbiophoreHarmonizer;
-
-                if (existingHarmonizerThought == null)
-                {
-                    Thought_SymbiophoreHarmonizer thought_SymbiophoreCaster = (Thought_SymbiophoreHarmonizer)ThoughtMaker.MakeThought(DIL_Symbiophore.DefOfs.SymbiophorePsychicHarmonization);
-                    thought_SymbiophoreCaster.harmonizer = this.parent;
-                    thought_SymbiophoreCaster.otherPawn = symbiophore;
-                    thought_SymbiophoreCaster.moodPowerFactor = Mathf.Clamp(moodProxy * 1.2f, -3f, 12f);
-
-                    pawn.needs.mood.thoughts.memories.TryGainMemory(thought_SymbiophoreCaster);
-                }
-                else
-                {
-                    float targetMoodPowerFactor = Mathf.Clamp(moodProxy * 1.2f, -3f, 12f);
-                    existingHarmonizerThought.moodPowerFactor = Mathf.Lerp(existingHarmonizerThought.moodPowerFactor, targetMoodPowerFactor, 0.2f);
+                    if (pawn.Position.DistanceToSquared(symbiophore.Position) <= inRange)
+                    {
+                        if (pawn.needs?.mood != null)
+                        {
+                            Thought_SymbiophoreHarmonizer existingHarmonizerThought = (Thought_SymbiophoreHarmonizer)pawn.needs.mood.thoughts.memories.OldestMemoryOfDef(DIL_Symbiophore.DefOfs.SymbiophoreMoodThought);
+                            if (existingHarmonizerThought == null)
+                            {
+                                Thought_SymbiophoreHarmonizer newHarmonizerThought = (Thought_SymbiophoreHarmonizer)ThoughtMaker.MakeThought(DIL_Symbiophore.DefOfs.SymbiophoreMoodThought);
+                                newHarmonizerThought.symbiophoreMoodPowerFactor = moodProxy; // Directly use moodProxy
+                                pawn.needs.mood.thoughts.memories.TryGainMemory(newHarmonizerThought);
+                                if (SymbiophoreMod.settings.EnableLogging)
+                                {
+                                    Log.Message($"Adding new harmonizer thought to {pawn.Name}");
+                                }
+                            }
+                            else
+                            {
+                                // Directly set the mood power factor to reflect the current mood proxy
+                                float targetMoodPowerFactor = moodProxy;
+                                if (targetMoodPowerFactor < 0 || targetMoodPowerFactor > 12)
+                                {
+                                    if (SymbiophoreMod.settings.EnableLogging)
+                                    {
+                                        Log.Warning($"Unexpected symbiophoreMoodPowerFactor: {targetMoodPowerFactor} for {pawn.Name}. Clamping to valid range.");
+                                    }
+                                    targetMoodPowerFactor = Mathf.Clamp(targetMoodPowerFactor, 0, 12);
+                                }
+                                existingHarmonizerThought.symbiophoreMoodPowerFactor = targetMoodPowerFactor;
+                                if (SymbiophoreMod.settings.EnableLogging)
+                                {
+                                    Log.Message($"Updated existing harmonizer thought for {pawn.Name} with symbiophoreMoodPowerFactor = {targetMoodPowerFactor}");
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
 
-
         private float CalculateSymbiophoreMoodProxy(Pawn pawn)
         {
-            float moodProxy = 6.0f;
+            float baseMoodProxy = 0.0f;
+            float moodProxy = baseMoodProxy;
 
-            // Check if the symbiophore is outside
+            // Temperature Contribution
+            float ambientTemperature = pawn.AmbientTemperature;
+            if (ambientTemperature < 16f)
+            {
+                moodProxy = -3f; // Hypothermic range, no emanation
+            }
+            else if (ambientTemperature >= 16f && ambientTemperature < 19f)
+            {
+                // Increase linearly from 16°C to 19°C
+                moodProxy = (ambientTemperature - 16f) / 3f * 1f;
+            }
+            else if (ambientTemperature >= 19f && ambientTemperature < 37f)
+            {
+                // Increase linearly from 19°C to 37°C, capping at +9
+                moodProxy = 1f + (ambientTemperature - 19f) / 18f * 8f;
+            }
+            else if (ambientTemperature >= 37f && ambientTemperature < 45f)
+            {
+                moodProxy = 9f; // Peak mood proxy
+            }
+            else if (ambientTemperature >= 45f && ambientTemperature < 53f)
+            {
+                // Decrease linearly from 45°C to 53°C
+                moodProxy = 9f - (ambientTemperature - 45f) / 8f * 9f;
+            }
+            else
+            {
+                moodProxy = -3f; // Too hot, no emanation
+            }
+
+            // Rain Contribution
+            if (pawn.Map.weatherManager.RainRate > 0.1f)
+            {
+                moodProxy += 3f;
+            }
+
+            // Unroofed Contribution
             if (!pawn.Position.Roofed(pawn.Map))
             {
-                moodProxy *= 1.1f;
+                moodProxy *= 1.25f;
             }
 
-            // Check if the symbiophore is eating
-            if (pawn.CurJobDef == JobDefOf.Ingest)
-            {
-                moodProxy *= 1.1f;
-            }
-
-            // Check if the symbiophore is hungry
+            // Hunger Penalty
             if (pawn.needs.food.CurLevelPercentage < 0.2f)
             {
                 moodProxy *= 0.5f;
             }
 
-            // Check if the symbiophore is tired and can't sleep
-            if (pawn.needs.rest.CurLevelPercentage < 0.2f && !RestUtility.CanFallAsleep(pawn))
+            // Sleep Penalty
+            if (pawn.needs.rest.CurLevelPercentage < 0.2f)
             {
-                moodProxy *= 0.8f;
+                moodProxy *= 0.5f;
             }
 
-            // Check if the symbiophore is in an uncomfortable temperature
-            float ambientTemperature = pawn.AmbientTemperature;
-            if (ambientTemperature < 21f || ambientTemperature > 37f)
-            {
-                moodProxy *= 0.8f;
-            }
-
-            // Check if the symbiophore is in pain
-            float painTotal = pawn.health.hediffSet.PainTotal;
-            if (painTotal > 0)
-            {
-                moodProxy *= 1 - painTotal;  // adjust the mood depending on the amount of pain. 
-            }
-
-            // Check if the symbiophore is on fire
-            if (pawn.IsBurning())
-            {
-                moodProxy *= 0;
-            }
-
+            // Clamp the moodProxy to the desired range
             moodProxy = Mathf.Clamp(moodProxy, -3f, 12f);
+
+            if (SymbiophoreMod.settings.EnableLogging)
+            {
+                Log.Message($"Calculated moodProxy: {moodProxy} for pawn: {pawn.Name} (Temperature: {ambientTemperature}, Rain: {pawn.Map.weatherManager.RainRate}, Unroofed: {!pawn.Position.Roofed(pawn.Map)}, Food: {pawn.needs.food.CurLevelPercentage})");
+            }
 
             return moodProxy;
         }
-
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ThoughtDef>
+        <defName>SymbiophoreMoodThought</defName>
+        <label>Symbiophore psychic emanation</label>
+        <durationDays>0.1</durationDays>
+        <effectMultiplyingStat>PsychicSensitivity</effectMultiplyingStat>
+        <stackLimit>1</stackLimit>
+        <nextThought>SymbiophoreMoodThought</nextThought>
+        <stackedEffectMultiplier>0.25</stackedEffectMultiplier>
+        <thoughtClass>DIL_Symbiophore.Thought_SymbiophoreHarmonizer</thoughtClass>
+        <stages>
+            <li>
+                <label>symbiophore psychic harmonization</label>
+                <description>This pawn is affected by proximity to a symbiophore</description>
+                <baseMoodEffect>0</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+</Defs>

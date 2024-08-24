@@ -36,13 +36,13 @@ namespace DIL_Symbiophore
                     // Start the targeter
                     Find.Targeter.BeginTargeting(new TargetingParameters
                     {
-                        canTargetPawns = true,  // We want to target pawns
-                        mapObjectTargetsMustBeAutoAttackable = false,  // We don't need to be able to attack the target
+                        canTargetPawns = true, 
+                        mapObjectTargetsMustBeAutoAttackable = false,  
                     }, c => AbsorbPsychicEntropyFromPawn(c.Thing as Pawn));  // Call AbsorbPsychicEntropyFromPawn when a target is selected
                 },
-                icon = ContentFinder<Texture2D>.Get("UI/Commands/DesirePower"),  // Replace with your own texture
+                icon = ContentFinder<Texture2D>.Get("UI/Commands/DesirePower"), 
             };
-          //  Log.Message("Adding gizmo for " + this.parent.Label);  // Log when the gizmo is added
+          //  Log.Message("Adding gizmo for " + this.parent.Label); 
             yield return command_Action;
         }
 

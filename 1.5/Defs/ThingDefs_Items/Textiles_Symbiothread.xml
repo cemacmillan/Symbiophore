@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Defs>   
+<ThingDef ParentName="ResourceBase">
+   	 <defName>Symbiothread</defName>
+        <label>silk</label>
+        <description>A rare and beautiful fiber produced by certain arthropods and known for its unparalleled beauty and comfort. This silk was produced by a symbiophore.</description>
+        <graphicData>
+            <texPath>Things/Item/Resource/Silk</texPath>
+             <graphicClass>Graphic_Single</graphicClass>
+        </graphicData>
+        <stackLimit>600</stackLimit>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <MarketValue>8.25</MarketValue>
+      <Beauty>3</Beauty>
+      <Mass>0.024</Mass>
+      <Flammability>0.5</Flammability>
+      <DeteriorationRate>2.0</DeteriorationRate>
+      <StuffPower_Armor_Sharp>1.25</StuffPower_Armor_Sharp>
+      <StuffPower_Armor_Blunt>0.54</StuffPower_Armor_Blunt>
+      <StuffPower_Armor_Heat>1</StuffPower_Armor_Heat>
+      <StuffPower_Insulation_Cold>20</StuffPower_Insulation_Cold>
+      <StuffPower_Insulation_Heat>20</StuffPower_Insulation_Heat>
+    </statBases>
+    <burnableByRecipe>true</burnableByRecipe>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <minRewardCount>90</minRewardCount>
+    <stuffProps>
+      <categories>
+        <li>Fabric</li>
+      </categories>
+      <commonality>0.05</commonality>
+     <color>(156,156,106)</color>
+      <statFactors>
+        <Flammability>0.4</Flammability>
+        <MaxHitPoints>1.5</MaxHitPoints>
+        <Beauty>7</Beauty>
+      </statFactors>
+    </stuffProps>
+    <thingCategories>
+      <li>Textiles</li>
+    </thingCategories>
+    <tradeTags>
+      <li>ExoticMisc</li>
+    </tradeTags>
+    <thingSetMakerTags><li>RewardStandardCore</li></thingSetMakerTags>
+    <allowedArchonexusCount>80</allowedArchonexusCount>
+  </ThingDef>
+  
+</Defs>

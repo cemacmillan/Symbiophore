@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThinkTreeDef>
+    <defName>Symbiophore</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- Keep lying down if we have to -->
+        <li Class="ThinkNode_ConditionalMustKeepLyingDown">
+          <subNodes>
+            <!-- Do a queued job if possible -->
+            <li Class="ThinkNode_QueuedJob">
+              <inBedOnly>true</inBedOnly>
+            </li>
+
+            <!-- Keep lying down -->
+            <li Class="JobGiver_KeepLyingDown" />
+          </subNodes>
+        </li>
+        
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Downed</treeDef>
+        </li>
+        <li Class="ThinkNode_Subtree">
+          <treeDef>BurningResponse</treeDef>
+        </li>
+        <!-- Custom subtree for handling abilities in manhunter state -->
+        <li Class="ThinkNode_ConditionalMentalStateClass">
+          <stateClass>MentalState_Manhunter</stateClass>
+          <subNodes>
+            <li Class="ThinkNode_Priority">
+              <subNodes>
+                <li Class="DIL_Symbiophore.JobGiver_SymbiophoreFight" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <li Class="ThinkNode_Subtree">
+          <treeDef>MentalStateCritical</treeDef>
+        </li>
+        
+        <!-- Do a queued job -->
+        <li Class="ThinkNode_QueuedJob" />
+        
+        <!-- Leave if timed out -->
+        <li Class="ThinkNode_ConditionalExitTimedOut">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Misc</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_ExitMapRandom">
+                  <defaultLocomotion>Walk</defaultLocomotion>     
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Mental state non critical -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>MentalStateNonCritical</treeDef>
+        </li>
+
+        <!-- Forced goto -->
+        <li Class="ThinkNode_ConditionalForcedGoto">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Misc</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_ForcedGoto" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Lord directives -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDuty</treeDef>
+        </li>
+
+        <!-- Insertion hook for modders -->
+        <li Class="ThinkNode_SubtreesByTag">
+          <insertTag>Symbiophore_PreMain</insertTag>
+        </li>
+
+        <li Class="JobGiver_AIAbilityFight">
+          <targetAcquireRadius>13</targetAcquireRadius>
+          <targetKeepRadius>15</targetKeepRadius>
+          <skipIfCantTargetNow>false</skipIfCantTargetNow>
+          <ability>OrganEjection</ability>
+          <allowTurrets>false</allowTurrets>
+          <needLOSToAcquireNonPawnTargets>true</needLOSToAcquireNonPawnTargets>
+        </li>
+
+        <!-- React to close melee threat -->
+        <!-- <li Class="JobGiver_ReactToCloseMeleeThreat" /> -->
+
+        <!-- Tame animal -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>TrainedAnimalBehavior</tagToGive>
+              <subNodes>
+                <!-- Trained behavior: obedience: Follow and defend master -->
+                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                  <trainable>Obedience</trainable>
+                  <subNodes>
+                    <li Class="ThinkNode_ConditionalShouldFollowMaster" >
+                      <subNodes>
+                        <li Class="JobGiver_AIDefendMaster">
+                          <attackMeleeThreatEvenIfNotHostile>true</attackMeleeThreatEvenIfNotHostile>
+                        </li>
+                        <li Class="JobGiver_AIFollowMaster"/>
+                        <li Class="JobGiver_WanderNearMaster" />
+                      </subNodes>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <!-- Trained behavior: Rescue-->
+                <li Class="ThinkNode_ConditionalTrainableCompleted">
+                  <trainable>Rescue</trainable>
+                  <subNodes>
+                    <li Class="JobGiver_RescueNearby">
+                      <radius>75</radius>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Take care of critical needs (below rescue - so heroic!)-->
+            
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>RestingForMedicalReasons</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_PatientGoToBed" />
+              </subNodes>
+            </li>
+            
+            <li Class="JobGiver_SeekAllowedArea" />
+            <li Class="JobGiver_SeekSafeTemperature">
+              <requiresInjury>false</requiresInjury>
+              <waitInSafeTemp>true</waitInSafeTemp>
+              <maxRadius>75</maxRadius>
+            </li>
+            
+          </subNodes>
+        </li>
+        
+        <!-- Satisfy basic needs -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>SatisfyBasicNeeds</treeDef>
+        </li>
+
+        <!-- Tame animal: do useful things for the colony-->
+        <li Class="ThinkNode_ConditionalHasFaction">
+          <subNodes>
+            
+            <!-- Try to mate -->
+            <li Class="ThinkNode_ChancePerHour_Mate">
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>SatisfyingNeeds</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_Mate" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!-- Nuzzle randoms -->
+            <li Class="ThinkNode_ChancePerHour_Nuzzle">
+              <subNodes>
+                <li Class="ThinkNode_Tagger">
+                  <tagToGive>Misc</tagToGive>
+                  <subNodes>
+                    <li Class="JobGiver_Nuzzle" />
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Insertion hook for modders -->
+        <li Class="ThinkNode_SubtreesByTag">
+          <insertTag>Animal_PreWander</insertTag>
+        </li>
+        
+        <!-- Tame animal: wander near colony if possible -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>Idle</tagToGive>
+              <subNodes>
+                <!-- Wander near your current position if in hostile map -->
+                <li Class="ThinkNode_ConditionalAnyEnemyInHostileMap">
+                  <subNodes>
+                    <li Class="JobGiver_WanderAnywhere">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <li Class="ThinkNode_ConditionalRoamer">
+                  <subNodes>
+                    <li Class="JobGiver_WanderInRoofedCellsInPen">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                      <expiryInterval>500</expiryInterval>
+                    </li>
+
+                    <!-- tame roamers should not wander too far, and if unenclosed wander near a suitable pen marker 10% of the time -->
+                    <li Class="ThinkNode_ConditionalRandom">
+                      <chance>0.1</chance>
+                      <subNodes>
+                        <li Class="JobGiver_WanderInPen">
+                          <maxDanger>None</maxDanger>
+                          <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                          <expiryInterval>500</expiryInterval>
+                        </li>
+                      </subNodes>
+                    </li>
+
+                    <li Class="JobGiver_WanderAnywhere">
+                      <maxDanger>None</maxDanger>
+                      <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                    </li>
+                  </subNodes>
+                </li>
+
+                <!-- Wander near colony -->
+                <li Class="JobGiver_WanderColony">
+                  <maxDanger>None</maxDanger>
+                  <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>
+                </li>
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+        
+        <!-- Wander -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
+          <subNodes>
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>Deadly</maxDanger>
+              <ticksBetweenWandersRange>120~240</ticksBetweenWandersRange>    
+           </li>
+         </subNodes>
+       </li>
+
+        <li Class="JobGiver_IdleError"/>
+      </subNodes>
+   </thinkRoot>
+ </ThinkTreeDef>
+   <ThinkTreeDef>
+    <defName>SymbiophoreConstant</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- Despawned -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>    <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+      <subNodes>
+        <!-- Flee enemies, tornados, meteorites, etc. -->
+        <li Class="JobGiver_AnimalFlee" />
+
+        <!-- Join auto joinable caravan -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>JoinAutoJoinableCaravan</treeDef>
+        </li>
+      </subNodes>
+    </li>
+
+    <li Class="ThinkNode_ConditionalCanDoLordJobNow">
+      <subNodes>
+        <!-- Lord directives -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDutyConstant</treeDef>
+        </li>
+      </subNodes>
+    </li>
+   </subNodes>
+  </thinkRoot>
+ </ThinkTreeDef>
+</Defs>
