@@ -11,35 +11,37 @@ namespace DIL_Symbiophore
 
         protected override Job TryGiveJob(Pawn pawn)
         {
-            Log.Message($"JobGiver_SymbiophoreFight triggered for pawn: {pawn}");
+           // Log.Message($"JobGiver_SymbiophoreFight triggered for pawn: {pawn}");
 
             if (pawn.MentalStateDef != MentalStateDefOf.Manhunter)
             {
-                Log.Message($"Pawn: {pawn} is not in Manhunter state.");
+                //Log.Message($"Pawn: {pawn} is not in Manhunter state.");
                 return null;
             }
 
             Pawn target = FindValidTarget(pawn);
             if (target == null)
             {
-                Log.Message($"No valid target found for pawn: {pawn}");
+                //Log.Message($"No valid target found for pawn: {pawn}");
                 return null;
             }
 
             Ability ability = GetRandomPossibleAbility(pawn, target);
             if (ability == null)
             {
-                Log.Message($"No applicable ability found for pawn: {pawn}");
+               // Log.Message($"No applicable ability found for pawn: {pawn}");
                 return null;
             }
 
-            Log.Message($"Pawn: {pawn} is casting ability: {ability.def.defName} on target: {target}");
+            if (SymbiophoreMod.settings.EnableLogging) { 
+                Log.Message($"Pawn: {pawn} is casting ability: {ability.def.defName} on target: {target}");
+            }
             return ability.GetJob(target, null);
         }
 
         private Pawn FindValidTarget(Pawn pawn)
         {
-            Log.Message($"Finding valid target for pawn: {pawn}");
+            //Log.Message($"Finding valid target for pawn: {pawn}");
             List<Pawn> potentialTargets = (List<Pawn>)pawn.Map.mapPawns.AllPawnsSpawned;
             Pawn bestTarget = null;
             float bestScore = float.MinValue;
@@ -48,9 +50,9 @@ namespace DIL_Symbiophore
             {
                 if (IsValidPawn(potentialTarget))
                 {
-                    Log.Message($"Evaluating potential target: {potentialTarget}");
+                   // Log.Message($"Evaluating potential target: {potentialTarget}");
                     float score = ScoreTarget(pawn, potentialTarget);
-                    Log.Message($"Score for target {potentialTarget}: {score}");
+                   // Log.Message($"Score for target {potentialTarget}: {score}");
                     if (score > bestScore)
                     {
                         bestTarget = potentialTarget;
@@ -59,7 +61,7 @@ namespace DIL_Symbiophore
                 }
             }
 
-            Log.Message($"Best target found: {bestTarget}");
+           // Log.Message($"Best target found: {bestTarget}");
             return bestTarget;
         }
 

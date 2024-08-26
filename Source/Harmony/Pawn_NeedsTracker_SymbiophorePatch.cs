@@ -18,11 +18,11 @@ namespace DIL_Symbiophore
             // Check if the need is one of the symbiophore-specific needs
             bool isSymbiophoreNeed = nd.defName == "SymbiophoreMood" || nd.defName == "SymbiophoreFullness";
 
-            // If it is a symbiophore-specific need, check if the pawn has the symbiophore hediff
+         
             if (isSymbiophoreNeed)
             {
                 // If the pawn does not have the symbiophore hediff, set the result to false
-                if (!___pawn.health.hediffSet.HasHediff(DIL_Symbiophore.DefOfs.SymbiophorePsychicHarmonization))
+                if (!___pawn.health.hediffSet.HasHediff(DIL_Symbiophore.DefOfs.SymbiophorePsychicEmanation))
                 {
                     __result = false;
                 }

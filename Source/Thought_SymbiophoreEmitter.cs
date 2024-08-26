@@ -27,7 +27,10 @@ namespace DIL_Symbiophore
             if (Find.TickManager.TicksGame - lastLogTick >= logIntervalTicks)
             {
                 lastLogTick = Find.TickManager.TicksGame;
+
+                if(SymbiophoreMod.settings.EnableLogging) { 
                 Log.Message($"In MoodOffset(): symbiophoreMoodPowerFactor = {symbiophoreMoodPowerFactor}, moodOffset = {moodOffset}");
+                }
             }
 
             return moodOffset;

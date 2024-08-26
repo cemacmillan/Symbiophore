@@ -49,7 +49,7 @@ namespace DIL_Symbiophore
 
         private void AbsorbPsychicEntropyFromPawn(Pawn targetPawn)
         {
-            // Check if it's a new day
+           
             float currentDay = GenDate.DaysPassedFloat;
             if (lastAbsorptionDay != currentDay)
             {
@@ -57,27 +57,26 @@ namespace DIL_Symbiophore
                 timesAbsorbedToday = 0;
             }
 
-            // Check if the maximum absorption limit is reached for the day
+            // Can this pawn absorb again today?
             if (timesAbsorbedToday >= maxAbsorptionsPerDay)
             {
                 return;
             }
 
-            // Check if the target pawn is null or doesn't have psychic entropy
             if (targetPawn == null || targetPawn.psychicEntropy == null)
             {
                 return;
             }
 
-            // Absorb psychic entropy from the target pawn
-            float amountToAbsorb = 1.0f;  // Replace with the amount of psychic entropy to absorb
-            targetPawn.psychicEntropy.TryAddEntropy(-amountToAbsorb, this.parent, false);  // The second parameter is the source of the entropy change, and the third parameter is a label to use in the gizmo that displays the pawn's psychic entropy
+            // Absorb psychic entropy
+            float amountToAbsorb = 1.0f; // this seems to take it all? 
+            targetPawn.psychicEntropy.TryAddEntropy(-amountToAbsorb, this.parent, false);  // negative augmentation - 2nd is the source of the entropy change, and the third parameter is a label to use in the gizmo that displays the pawn's psychic entropy
 
             // Increase the mood proxy of the parent pawn
-            Comp_SymbiophorePsychicHarmonizer comp = this.parent.GetComp<Comp_SymbiophorePsychicHarmonizer>();
+            Comp_SymbiophorePsychicEmitter comp = this.parent.GetComp<Comp_SymbiophorePsychicEmitter>();
             if (comp != null)
             {
-                comp.moodProxy += 0.1f;  // Replace 0.1f with the amount to increase the mood proxy
+                comp.moodProxy += 0.1f;  // note this is improving _symbiophore mood_ not year pawnz
             }
 
             // Increase the number of absorptions for the day
@@ -93,6 +92,6 @@ namespace DIL_Symbiophore
             this.compClass = typeof(Comp_Symbiophore);
         }
 
-        // Define properties for your Comp_Symbiophore class
+        // had to be declared?
     }
 }

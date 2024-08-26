@@ -75,5 +75,8 @@
 	  <Compile Remove="ITabSymbiophoreNeeds.cs" />
 	  <Compile Remove="Harmony\SymbiophoreDefGenPatch.cs" />
 	  <Compile Remove="CustomNeedDefs.cs" />
+	  <Compile Remove="Harmony\SymbiophorePsychicEmitterPatch.cs" />
+	  <Compile Remove="HediffCompProperties_PsychicEmitter.cs" />
+	  <Compile Remove="SymbiophorePsychicHarmonization.cs" />
 	</ItemGroup>
 </Project>

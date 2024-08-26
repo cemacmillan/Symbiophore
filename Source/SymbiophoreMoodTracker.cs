@@ -13,8 +13,8 @@ namespace DIL_Symbiophore
             {
                
 
-                // Apply the hediff to the symbiophore pawn
-                HediffDef hediffDef = DefDatabase<HediffDef>.GetNamed("SymbiophorePsychicHarmonization");
+                // Get Hediff onto the pawn
+                HediffDef hediffDef = DefDatabase<HediffDef>.GetNamed("SymbiophorePsychicEmanation");
                 if (hediffDef != null)
                 {
                     Hediff hediff = HediffMaker.MakeHediff(hediffDef, pawn);
@@ -23,7 +23,7 @@ namespace DIL_Symbiophore
                 }
                 else
                 {
-                    Log.Error("Failed to find HediffDef SymbiophorePsychicHarmonization.");
+                    Log.Error("Failed to find HediffDef SymbiophorePsychicEmanation. Most likely there has been a massive EMP pulse in your vicinity disrupting your computer. Notify the developer of this mod.");
                 }
             }
         }

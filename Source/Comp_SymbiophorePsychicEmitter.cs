@@ -2,7 +2,7 @@
 
 namespace DIL_Symbiophore
 {
-    public class Comp_SymbiophorePsychicHarmonizer : ThingComp
+    public class Comp_SymbiophorePsychicEmitter : ThingComp
     {
         public float moodProxy;
 

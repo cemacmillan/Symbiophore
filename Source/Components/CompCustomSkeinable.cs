@@ -7,7 +7,6 @@ namespace DIL_Symbiophore
 {
     public class CompCustomSkeinable : CompHasGatherableBodyResource
     {
-        // Properties for gathering resources
         protected override int GatherResourcesIntervalDays => Props.gatherResourcesIntervalDays;
         protected override int ResourceAmount => CalculateResourceAmount();
         protected override ThingDef ResourceDef => Props.resourceDef;
@@ -16,18 +15,17 @@ namespace DIL_Symbiophore
 
         public CompProperties_CustomSkeinable Props => (CompProperties_CustomSkeinable)props;
 
-        // Tick method to periodically update the mood proxy value
         public override void CompTickRare()
         {
             base.CompTickRare();
-            if (parent.IsHashIntervalTick(2500)) // Adjust this interval as needed
+            if (parent.IsHashIntervalTick(2500)) 
             {
-                // Perform any periodic checks or updates
+              
                 var pawn = parent as Pawn;
                 if (pawn != null)
                 {
-                    // Retrieve the first instance of the SymbiophorePsychicHarmonizer hediff
-                    var hediff = pawn.health.hediffSet.hediffs.OfType<SymbiophorePsychicHarmonizer>().FirstOrDefault();
+                    // verify
+                    var hediff = pawn.health.hediffSet.hediffs.OfType<SymbiophorePsychicEmitter>().FirstOrDefault();
                     if (hediff != null)
                     {
                         lastMoodProxy = hediff.MoodProxy;
@@ -36,7 +34,7 @@ namespace DIL_Symbiophore
             }
         }
 
-        // Custom gather method for resources
+        // Generally applies to AARF
         public void CustomGathered(Pawn doer)
         {
             if (!Active)
@@ -64,27 +62,35 @@ namespace DIL_Symbiophore
             fullness = 0f;
         }
 
-        // Method to calculate the amount of resources
+        // Generally applies to AARF
         private int CalculateResourceAmount()
         {
             var pawn = parent as Pawn;
             if (pawn == null)
             {
-                Log.Message($"CalculateResourceAmount: parent is not a pawn. Returning default resource amount: {Props.resourceAmount}");
+                Log.Message($"CalculateResourceAmount: parent is not a pawn. (This is not normal - please signal as a bug if possible) Returning default resource amount: {Props.resourceAmount}.");
                 return Props.resourceAmount;
             }
 
-            // Retrieve the first instance of the SymbiophorePsychicHarmonizer hediff
-            var hediff = pawn.health.hediffSet.hediffs.OfType<SymbiophorePsychicHarmonizer>().FirstOrDefault();
+            // 
+            var hediff = pawn.health.hediffSet.hediffs.OfType<SymbiophorePsychicEmitter>().FirstOrDefault();
             float moodFactor = hediff != null ? Mathf.Clamp01(hediff.MoodProxy / 12f) : 1f;
-            Log.Message($"CalculateResourceAmount: Mood proxy of {pawn.Name}: {hediff?.MoodProxy}, Mood factor: {moodFactor}");
+
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"CalculateResourceAmount: Mood proxy of {pawn.Name}: {hediff?.MoodProxy}, Mood factor: {moodFactor}");
+                }
 
             float healthFactor = 1.0f;
             if (pawn.health != null)
             {
                 float healthLevel = pawn.health.summaryHealth.SummaryHealthPercent;
                 healthFactor = Mathf.Clamp01(healthLevel);
-                Log.Message($"CalculateResourceAmount: Health level of {pawn.Name}: {healthLevel}, Health factor: {healthFactor}");
+
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"CalculateResourceAmount: Health level of {pawn.Name}: {healthLevel}, Health factor: {healthFactor}");
+                }
             }
 
             int calculatedResourceAmount = Mathf.RoundToInt(Props.resourceAmount * moodFactor * healthFactor);
@@ -93,17 +99,21 @@ namespace DIL_Symbiophore
             return calculatedResourceAmount;
         }
 
-        // Method to calculate the gather skill factor based on the pawn's Animals skill level
+        // AARF method
         private float AnimalGatherSkillFactor(Pawn doer)
         {
             if (doer.skills == null || doer.skills.GetSkill(SkillDefOf.Animals) == null)
             {
-                return 1.0f; // No skill information available, use default factor
+                return 1.0f; // But, this is messed up
             }
 
             int skillLevel = doer.skills.GetSkill(SkillDefOf.Animals).Level;
-            float skillFactor = 1.0f + (skillLevel * 0.05f); // Each skill level adds 5% to the gather amount
-            Log.Message($"AnimalGatherSkillFactor: Skill level of {doer.Name}: {skillLevel}, Skill factor: {skillFactor}");
+            float skillFactor = 1.0f + (skillLevel * 0.05f); // 5% to the gather amount.. maybe instead augment gather amount 
+           
+            if (SymbiophoreMod.settings.EnableLogging)
+            {
+                Log.Message($"AnimalGatherSkillFactor: Skill level of {doer.Name}: {skillLevel}, Skill factor: {skillFactor}");
+            }
 
             return skillFactor;
         }

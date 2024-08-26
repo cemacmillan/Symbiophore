@@ -7,7 +7,7 @@ namespace DIL_Symbiophore
     public static class DefOfs
     {
         public static ThoughtDef SymbiophoreMoodThought;
-        public static HediffDef SymbiophorePsychicHarmonization; // Correct type here
+        public static HediffDef SymbiophorePsychicEmanation; // Correct type here
 
         static DefOfs()
         {

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
     <ThoughtDef>
-        <defName>SymbiophorePsychicHarmonization</defName>
+        <defName>SymbiophorePsychicEmanation</defName>
         <label>Symbiophore psychic emanation</label>
         <durationDays>0.2</durationDays>
         <effectMultiplyingStat>PsychicSensitivity</effectMultiplyingStat>
         <stackLimit>1</stackLimit>
-        <nextThought>SymbiophorePsychicHarmonization</nextThought>
+        <nextThought>SymbiophorePsychicEmanation</nextThought>
         <stackedEffectMultiplier>0.25</stackLimit>
         <thoughtClass>DIL_Symbiophore.Thought_SymbiophoreHarmonizer</thoughtClass>
         <stages>

@@ -8,14 +8,15 @@ namespace DIL_Symbiophore
     public class SymbiophoreCustomNeed : Need
     {
         private float value;
-        private SymbiophorePsychicHarmonizer harmonizer;
+        //what got messed up before here, is this somehow became static and shared between symbiophore instances. Hahahahahaha......
+        private SymbiophorePsychicEmitter harmonizer;
 
         public SymbiophoreCustomNeed(Pawn pawn) : base(pawn)
         {
-            this.threshPercents = new List<float> { 0.25f, 0.5f, 0.75f }; // Example threshold percentages
+            this.threshPercents = new List<float> { 0.25f, 0.5f, 0.75f }; // Not actually used
         }
 
-        public SymbiophoreCustomNeed(Pawn pawn, SymbiophorePsychicHarmonizer harmonizer) : this(pawn)
+        public SymbiophoreCustomNeed(Pawn pawn, SymbiophorePsychicEmitter harmonizer) : this(pawn)
         {
             this.harmonizer = harmonizer;
         }

@@ -5,10 +5,10 @@ using Verse;
 
 namespace DIL_Symbiophore
 {
-    public class SymbiophorePsychicHarmonizer : HediffComp
+    public class SymbiophorePsychicEmitter : HediffComp
     {
         private int tickCounter = 0;
-        private const int inRange = 24 * 24; // symbiophore coverage
+        private const int inRange = 12 * 12; // symbiophore coverage
         private const int effectInterval = 600; // 600 ticks = 10 seconds in-game
         private float previousMoodProxy = 6.0f;
 
