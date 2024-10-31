@@ -77,6 +77,11 @@
 	  <Compile Remove="CustomNeedDefs.cs" />
 	  <Compile Remove="Harmony\SymbiophorePsychicEmitterPatch.cs" />
 	  <Compile Remove="HediffCompProperties_PsychicEmitter.cs" />
-	  <Compile Remove="SymbiophorePsychicHarmonization.cs" />
+	  <Compile Remove="Harmony\MaybeThen.cs" />
+	  <Compile Remove="SymbiophorePsychicEmitter.cs" />
+	  <Compile Remove="SymbiophorePsychicEmitterProperties.cs" />
+	  <Compile Remove="SymbiophorePsychicEmanation.cs" />
+	  <Compile Remove="Harmony\SymbiophorePsychicHarmonizerPatch.cs" />
+	  <Compile Remove="Components\Comp_SymbiophorePsychicEmitter.cs" />
 	</ItemGroup>
 </Project>

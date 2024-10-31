@@ -3,28 +3,35 @@
     <ThingDef ParentName="AnimalThingBase">
         <defName>Symbiophore</defName>
         <label>symbiophore</label>
-        <description>A mysterious creature bearing a resemblance to a terrestrial grub, the symbiophore stands out in the spectrum of lifeforms for its unique psychic properties and its ability to form bonds with humans. The symbiophore displays a level of animalistic intelligence and has a unique ability to absorb psychic entropy, making it an enigma among the scholars of natural sciences. Despite its grub-like form and unusual coloring, colonists often form strong emotional bonds with this creature, the likes of which can be compared to the companionship offered by a common domesticated animal. Its exotic nature, coming from the hottest jungles of the Rim, coupled with its extraordinary abilities, have made symbiophores much sought out as pets.</description>
+        <description>A caterpillar-like creature with large globular eyes and sensitive antennae, the symbiophore is known for its vibrant coloring, silk production, and pleasing psychic emanations.</description>
         <statBases>
             <MoveSpeed>3</MoveSpeed>
-            <ArmorRating_Blunt>0.72</ArmorRating_Blunt>
+            <ArmorRating_Blunt>0.63</ArmorRating_Blunt>
             <ArmorRating_Sharp>0.18</ArmorRating_Sharp>
-            <ComfyTemperatureMin>21</ComfyTemperatureMin>
-            <MarketValue>100</MarketValue>
+            <ComfyTemperatureMin>-3</ComfyTemperatureMin>
+            <ComfyTemperatureMax>53</ComfyTemperatureMax>
+            <MarketValue>120</MarketValue>
             <LeatherAmount>0</LeatherAmount>
         </statBases>
-        <comps>
-            <li>
-                <compClass>DIL_Symbiophore.Comp_Symbiophore</compClass>
-            </li>
-            <li>
-                <compClass>DIL_Symbiophore.SymbiophoreMoodTracker</compClass>
-            </li>
-            <li Class="DIL_Symbiophore.CompProperties_CustomSkeinable">
-                <gatherResourcesIntervalDays>2</gatherResourcesIntervalDays>
-                <resourceAmount>15</resourceAmount>
-                <resourceDef>Symbiothread</resourceDef>
-            </li>
-        </comps>
+  <comps>
+    <li>
+        <compClass>DIL_Symbiophore.Comp_Symbiophore</compClass>
+    </li>
+      <!-- Custom Skeinable Comp -->
+      <li Class="DIL_Symbiophore.CompProperties_Skeinable">
+          <gatherResourcesIntervalDays>4</gatherResourcesIntervalDays>
+          <resourceAmount>32</resourceAmount>
+          <resourceDef>Symbiothread</resourceDef>
+      </li>
+
+      <!-- Animal Emitter Comp 
+      <li Class="DIL_Symbiophore.HediffCompProperties_AnimalEmitter">
+          <range>10.0</range>
+          <thought>SymbiophoreMoodThought</thought>
+          <moodFactor>1.0</moodFactor>
+      </li>
+      -->
+  </comps>
         <uiIconScale>1</uiIconScale>
         <tools>
             <li>
@@ -41,7 +48,7 @@
                 <capacities>
                     <li>Blunt</li>
                 </capacities>
-                <power/>
+                <power>3</power>
                 <cooldownTime>5</cooldownTime>
                 <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
                 <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
@@ -67,16 +74,26 @@
             <foodType>OmnivoreAnimal, AnimalProduct</foodType>
             <manhunterOnDamageChance>0.05</manhunterOnDamageChance>
             <herdAnimal>false</herdAnimal>
-            <baseBodySize>0.25</baseBodySize>
-            <baseHungerRate>0.35</baseHungerRate>
-            <baseHealthScale>2</baseHealthScale>
-            <lifeExpectancy>80</lifeExpectancy>
+            <predator>true</predator>
+            <maxPreyBodySize>0.6</maxPreyBodySize>
+            <baseBodySize>0.35</baseBodySize>
+            <baseHungerRate>0.12</baseHungerRate>
+            <baseHealthScale>1.6</baseHealthScale>
+            <lifeExpectancy>70</lifeExpectancy>
             <wildness>0.15</wildness>
             <petness>0.85</petness>
             <trainability>Advanced</trainability>
-            <nuzzleMtbHours>12</nuzzleMtbHours>
-            <gestationPeriodDays>15</gestationPeriodDays>
+            <mateMtbHours>8</mateMtbHours>
+            <nuzzleMtbHours>24</nuzzleMtbHours>
+            <gestationPeriodDays>3</gestationPeriodDays>
             <nameOnTameChance>0.75</nameOnTameChance>
+            <wildBiomes>
+                <ColdBog>0.005</ColdBog>
+                <TemperateForest>0.01</TemperateForest>
+                <TemperateSwamp>0.05</TemperateSwamp>
+                <TropicalRainforest>1</TropicalRainforest>
+                <TropicalSwamp>0.65</TropicalSwamp>
+            </wildBiomes>
             <litterSizeCurve>
                 <points>
                     <li>(0.5, 0)</li>
@@ -97,11 +114,11 @@
                 </li>
                 <li>
                     <def>EusocialInsectAdult</def>
-                    <minAge>0.4</minAge>
-                    <soundWounded>Pawn_Megascarab_Wounded</soundWounded>
-                    <soundDeath>Pawn_Megascarab_Death</soundDeath>
-                    <soundCall>Pawn_Megascarab_Call</soundCall>
-                    <soundAngry>Pawn_Megascarab_Angry</soundAngry>
+                    <minAge>3</minAge>
+                    <soundWounded>SymbiophoreWounded</soundWounded>
+                    <soundDeath>SymbiophoreDeath</soundDeath>
+                    <soundCall>SymbiophoreCall</soundCall>
+                    <soundAngry>SymbiophoreAngry</soundAngry>
                 </li>
             </lifeStageAges>
             <soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
@@ -128,7 +145,10 @@
         <race>Symbiophore</race>
         <combatPower>100</combatPower>
         <canArriveManhunter>true</canArriveManhunter>
-        <ecoSystemWeight>0.25</ecoSystemWeight>
+         <ecoSystemWeight>1.0</ecoSystemWeight>
+         <!--
+         <wildGroupSize>1~6</wildGroupSize>
+         -->
         <abilities>
             <li>OrganEjection</li>
         </abilities>
@@ -174,7 +194,7 @@
                 </bodyGraphicData>
                 <dessicatedBodyGraphicData>
                     <texPath>Things/Pawn/Animal/Symbiophore/Dessicated_Symbiophore</texPath>
-                    <drawSize>0.6</drawSize>
+                    <drawSize>0.5</drawSize>
                 </dessicatedBodyGraphicData>
             </li>
             <li>
@@ -189,7 +209,7 @@
                 </bodyGraphicData>
                 <dessicatedBodyGraphicData>
                     <texPath>Things/Pawn/Animal/Symbiophore/Dessicated_Symbiophore</texPath>
-                    <drawSize>0.8</drawSize>
+                    <drawSize>0.5</drawSize>
                 </dessicatedBodyGraphicData>
             </li>
         </lifeStages>

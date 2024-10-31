@@ -3,36 +3,44 @@
 	<name>Symbiophore</name>
 	<author>cem</author>
 	<packageId>cem.symbiophore</packageId>
-	<description>Introducing the Symbiophore, an extraordinary caterpillar like creature from the dense jungles, distinguished by its rare psychic abilities. Symbiophores are not only excellent pets but they also harmonize with the psychic energy of your colonists, uplifting their mood and well-being. These creatures also serve as unique psychic entropy sponges, relieving your psycasters of excess neural heat.
+	<description>[b]Symbiophore: Jungle-Born Psychic Companion and Silk Producer[/b]
 
-[spoiler]
-What do they actually do?
+The Symbiophore is a fascinating, caterpillar-like creature from the dense jungles, known for its rare psychic abilities and unique silk production. These creatures are not only loyal and affectionate pets but also provide invaluable support to your psycasters. They resonate with the psychic energy around them, helping to relieve neural strain while also improving the well-being of nearby colonists.
+
+Symbiophores serve as:
 [list]
-	[*] psychic harmonizer like function tuned to symbiophore's comfort and well-being. Range is slightly shorter than the harmonizer.
-	[*] can absorb psychic entropy (neural heat) twice per day.
-	[*] combat effectiveness similar to a cat but slower.
-[/list]
-[/spoiler]
-
-An appropriate companion for your psycasting pawns.
-
-How to acquire a symbiophore:
-[list]
-	[*] animal traders of exotic and uncommon animals.
-	[*] go to the jungle and tame one.
-	[*] rarely, a lost symbiophore may appear and join your colony (if none are present on the map).
+[*][b]Psychic Emanators[/b]: They enhance the mood of those nearby by emitting calming psychic emanations, provided they are well-cared for and comfortable. A content Symbiophore has a much stronger psychic effect.
+[*][b]Neural Heat Sponges[/b]: Twice per day, they can absorb excess psychic entropy (neural heat) from psycasters, reducing the risk of neural overload.
+[*][b]Silk Producers[/b]: Symbiophores produce [i]silk noil[/i], a raw material that can be spun into silk thread at crafting stations. In future updates, more specialized processing methods will be introduced: lucette fork and crafting spot, spinning wheel, silk reeler (industrial technology). For now, Symbiophores directly produce silk.
+[*][b]Improved Combatants[/b]: Though not primarily combat animals, Symbiophores now possess a unique "gullet ejection" attack, which causes acid burn damage. This powerful ability is used defensively and can only be unleashed once per quadrum, requiring a recovery phase afterward.
 [/list]
 
-Being creatures of the hottest jungle, the symbiophore prefers warmer temperatures and won't be happy if it gets cold, just as it won't be happy if it has nothing to eat (Animal Omnivore, Ovivore).
+[b]Acquiring a Symbiophore[/b]:
+[list]
+[*][b]Animal Traders[/b]: Occasionally available from exotic and uncommon animal traders.
+[*][b]Tame in the Wild[/b]: Seek them out in jungle biomes to tame these rare creatures.
+[*][b]Unexpected Arrival[/b]: On rare occasions, a lost Symbiophore may wander into your colony, seeking a new home.
+[/list]
 
-I'm still balancing and working on this creature, so it may gain capacities or new tricks in the future.
+Symbiophores thrive in warm, humid environments and prefer a diverse diet. They are particularly sensitive to cold and will become unhappy if exposed to low temperatures, go hungry or want for sleep. With proper care, they can even be brought into combat, but mind the ambient temperature to keep them comfortable.
 
-Title art by Poulpe Voulant.
+[b]Current Status and Future Updates[/b]:
+Symbiophores are still being balanced, and additional features or abilities may be added in future updates. The silk production system will evolve, including the introduction of specialized workstations for processing silk noil into silk thread.
 
-Support my work on [url=https://ko-fi.com/N4N4NFFPZ]Support my work via ko-fi.com[/url].
+---
 
-</description>
+[b]What's New?[/b]:
+[list]
+[*]Totally new artwork for the Symbiophore.
+[*]Introduction of silk production, a valuable new resource.
+[*]Psychic emanations are now more effective when the Symbiophore is comfortable and happy.
+[*]Symbiophores can now participate in combat with the powerful "gullet ejection" acid attack.
+[/list]
 
+[b]Support the Mod[/b]: [url=https://ko-fi.com/N4N4NFFPZ]Support via Ko-fi[/url]
+
+Art by Poulpe Voulant.</description>
+<url>https://github.com/cemacmillan/Symbiophore</url>
 	<supportedVersions>
 		<li>1.4</li>
 		<li>1.5</li>

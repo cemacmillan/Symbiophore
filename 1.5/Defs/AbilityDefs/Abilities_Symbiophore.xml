@@ -14,7 +14,9 @@
     <verbClass>Verb_CastAbility</verbClass>
     <range>10</range>
     <warmupTime>0.5</warmupTime>
+    <!--
     <soundCast>AgonyPulse_Cast</soundCast>
+    --> 
     <targetParams>
      <canTargetLocations>false</canTargetLocations>
         <canTargetPawns>true</canTargetPawns>

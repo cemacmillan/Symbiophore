@@ -13,7 +13,7 @@ namespace DIL_Symbiophore
 
         protected override CompHasGatherableBodyResource GetComp(Pawn animal)
         {
-            return animal.TryGetComp<CompCustomSkeinable>(); // Use the custom component
+            return animal.TryGetComp<CompSkeinable>(); // Use the custom component
         }
 
         public override void ExposeData()
@@ -48,7 +48,7 @@ namespace DIL_Symbiophore
                 gatherProgress += actor.GetStatValue(StatDefOf.AnimalGatherSpeed);
                 if (gatherProgress >= WorkTotal)
                 {
-                    ((CompCustomSkeinable)GetComp((Pawn)(Thing)job.GetTarget(TargetIndex.A))).CustomGathered(pawn);
+                    ((CompSkeinable)GetComp((Pawn)(Thing)job.GetTarget(TargetIndex.A))).CustomGathered(pawn);
                     actor.jobs.EndCurrentJob(JobCondition.Succeeded);
                 }
             };

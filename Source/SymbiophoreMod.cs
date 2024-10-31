@@ -13,7 +13,7 @@ namespace DIL_Symbiophore
             settings = GetSettings<SymbiophoreModSettings>();
             var harmony = new Harmony("cem.symbiophore");
             harmony.PatchAll();
-            Log.Message("<color=#00FF7F>[Symbiophore]</color>v1.5.x");
+            Log.Message("<color=#00FF7F>[Symbiophore]</color>v1.5.3 vroomvroomcrash");
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

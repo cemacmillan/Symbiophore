@@ -2,15 +2,15 @@
 
 namespace DIL_Symbiophore
 {
-    public class CompProperties_CustomSkeinable : CompProperties
+    public class CompProperties_Skeinable : CompProperties
     {
         public int gatherResourcesIntervalDays;
         public int resourceAmount;
         public ThingDef resourceDef;
 
-        public CompProperties_CustomSkeinable()
+        public CompProperties_Skeinable()
         {
-            this.compClass = typeof(CompCustomSkeinable);
+            this.compClass = typeof(CompSkeinable);
         }
     }
 }

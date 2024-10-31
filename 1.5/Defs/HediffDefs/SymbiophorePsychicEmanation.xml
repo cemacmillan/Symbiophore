@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-    <HediffDef>
-        <defName>SymbiophorePsychicEmanation</defName>
-        <label>symbiophore psychic emanations</label>
-        <description>Psychic emanations from symbiophore.</description>
-        <isBad>false</isBad>
-        <scenarioCanAdd>false</scenarioCanAdd>
-        <tendable>false</tendable> <!-- this property is respected everywhere, isBad ... not at all -->
-        <hediffClass>HediffWithComps</hediffClass>
-        <comps>
-            <li Class="DIL_Symbiophore.SymbiophorePsychicEmitterProperties">
-                <!-- comp properties would go here if there weren't a ton of C# mucking with properties-->
-            </li>
-        </comps>
-    </HediffDef>
+     <HediffDef>
+         <defName>SymbiophorePsychicEmanation</defName>
+         <label>symbiophore psychic emanations</label>
+         <description>The Symbiophore emits a psychic field that affects nearby pawns.</description>
+         <isBad>false</isBad>
+         <hediffClass>HediffWithComps</hediffClass>
+         <comps>
+             <li Class="DIL_Symbiophore.HediffCompProperties_AnimalEmitter">
+                 <range>20</range>
+                 <thought>SymbiophoreMoodThought</thought>
+                 <moodFactor>1.5</moodFactor>
+             </li>
+             <li Class="HediffCompProperties_DisappearsOnDeath"/>
+         </comps>
+     </HediffDef>
 </Defs>

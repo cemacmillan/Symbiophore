@@ -23,11 +23,11 @@ namespace DIL_Symbiophore
                 this.pawn = pawn;
             }
 
-            // Add any necessary methods and fields for handling thoughts
+          
 
             public void AddSymbiophoreThoughts()
             {
-                // Add your custom thoughts to pawn.needs.mood.thoughts here
+                
             }
         }
     }
