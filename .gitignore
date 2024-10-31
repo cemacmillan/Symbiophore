@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+#OSX crap
+.DS_Store
+**/.DS_Store
+#Jetbrains stuff
+.idea
+
 # User-specific files
 *.rsuser
 *.suo
@@ -396,3 +402,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+About/.DS_Store
+.DS_Store
+1.5/Defs/.DS_Store
+Source/.DS_Store
+Source/errors.txt

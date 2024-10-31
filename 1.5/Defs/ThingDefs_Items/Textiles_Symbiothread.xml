@@ -31,7 +31,7 @@
         <li>Fabric</li>
       </categories>
       <commonality>0.05</commonality>
-     <color>(156,156,106)</color>
+     <color>(180,169,154)</color>
       <statFactors>
         <Flammability>0.4</Flammability>
         <MaxHitPoints>1.5</MaxHitPoints>
