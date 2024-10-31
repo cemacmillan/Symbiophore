@@ -116,22 +116,6 @@ namespace DIL_Symbiophore
                 float moodProxy = emitter.MoodProxy;
                 float psychicSensitivity = pawn.GetStatValue(StatDefOf.PsychicSensitivity, applyPostProcess: true);
                 float result = moodProxy * psychicSensitivity;
-
-                // Handle logging with cooldown and pawn change check
-           /*     if (SymbiophoreMod.settings.EnableLogging)
-                {
-                    if (logCooldownTicks <= 0 || pawn != lastLoggedPawn)
-                    {
-                        Log.Message($"MoodOffset calculated for {pawn.LabelShort}. MoodProxy: {moodProxy}, Psychic Sensitivity: {psychicSensitivity}, Result: {result}");
-                        lastLoggedPawn = pawn;
-                        logCooldownTicks = LogCooldownDuration;
-                    }
-                    else
-                    {
-                        logCooldownTicks--;
-                    }
-                }
-*/
                 return result;
             }
             finally
