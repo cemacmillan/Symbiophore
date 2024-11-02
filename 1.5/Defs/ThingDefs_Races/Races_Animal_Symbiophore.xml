@@ -75,7 +75,7 @@
             <manhunterOnDamageChance>0.05</manhunterOnDamageChance>
             <herdAnimal>false</herdAnimal>
             <predator>true</predator>
-            <maxPreyBodySize>0.6</maxPreyBodySize>
+            <maxPreyBodySize>0.45</maxPreyBodySize>
             <baseBodySize>0.35</baseBodySize>
             <baseHungerRate>0.12</baseHungerRate>
             <baseHealthScale>1.6</baseHealthScale>
@@ -83,16 +83,16 @@
             <wildness>0.15</wildness>
             <petness>0.85</petness>
             <trainability>Advanced</trainability>
-            <mateMtbHours>8</mateMtbHours>
+            <mateMtbHours>72</mateMtbHours>
             <nuzzleMtbHours>24</nuzzleMtbHours>
-            <gestationPeriodDays>3</gestationPeriodDays>
+            <gestationPeriodDays>13</gestationPeriodDays>
             <nameOnTameChance>0.75</nameOnTameChance>
             <wildBiomes>
                 <ColdBog>0.005</ColdBog>
-                <TemperateForest>0.01</TemperateForest>
+                <TemperateForest>0.025</TemperateForest>
                 <TemperateSwamp>0.05</TemperateSwamp>
                 <TropicalRainforest>1</TropicalRainforest>
-                <TropicalSwamp>0.65</TropicalSwamp>
+                <TropicalSwamp>0.75</TropicalSwamp>
             </wildBiomes>
             <litterSizeCurve>
                 <points>
