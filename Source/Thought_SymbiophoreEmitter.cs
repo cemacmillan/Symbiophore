@@ -1,6 +1,7 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using System.Linq;
 
 namespace DIL_Symbiophore
 {
@@ -30,6 +31,8 @@ namespace DIL_Symbiophore
         public override string LabelCap => base.CurStage.label.Formatted((NamedArgument)(emitter?.parent.pawn?.LabelShort ?? "Unknown Emitter")).CapitalizeFirst();
 
         // Helper method to check if two pawns are in the same player-controlled caravan
+        // This only applies to mood effects - skeining (getting silk resource) won't happen on caravans
+        // at present.
         private bool AreInSamePlayerControlledCaravan(Pawn pawn1, Pawn pawn2)
         {
             return pawn1.IsPlayerControlledCaravanMember() && pawn2.IsPlayerControlledCaravanMember() && 
@@ -66,21 +69,43 @@ namespace DIL_Symbiophore
             }
         }
         
-        // Save/load the reference to the emitter
         public override void ExposeData()
         {
             base.ExposeData();
 
-            // Use the getter/setter to manage emitter during saving/loading
-            var localEmitter = emitter;
-            Scribe_References.Look(ref localEmitter, "emitter");
+            // Save/load the unique ID of the emitter's parent pawn
+            string emitterPawnID = emitter?.parent?.pawn?.GetUniqueLoadID();
+            Scribe_Values.Look(ref emitterPawnID, "emitterPawnID");
 
-            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            // Save/load the unique ID of the HediffWithComps that contains the HediffComp_AnimalEmitter
+            string emitterHediffID = emitter?.parent?.GetUniqueLoadID();
+            Scribe_Values.Look(ref emitterHediffID, "emitterHediffID");
+
+            if (Scribe.mode == LoadSaveMode.LoadingVars && emitterPawnID != null && emitterHediffID != null)
             {
-                SetEmitter(localEmitter);
+                // Resolve the emitter using the saved IDs
+                Pawn emitterPawn = Find.WorldPawns.AllPawnsAliveOrDead.FirstOrDefault(p => p.GetUniqueLoadID() == emitterPawnID);
+                if (emitterPawn != null)
+                {
+                    // Find the HediffWithComps using the unique ID and then get the HediffComp_AnimalEmitter
+                    var hediff = emitterPawn.health.hediffSet.hediffs
+                        .OfType<HediffWithComps>()
+                        .FirstOrDefault(h => h.GetUniqueLoadID() == emitterHediffID);
+            
+                    if (hediff != null)
+                    {
+                        var emitterComp = hediff.TryGetComp<HediffComp_AnimalEmitter>();
+                        SetEmitter(emitterComp);
+                    }
+                }
+                else
+                {
+                    Log.Warning($"Failed to find emitter pawn with ID {emitterPawnID} for Thought_SymbiophoreEmitter.");
+                }
             }
         }
-
+        
+       
         public override float MoodOffset()
         {
             if (_isCalculatingMoodOffset)
@@ -107,7 +132,7 @@ namespace DIL_Symbiophore
                 // Ensure that emitter is not null before proceeding
                 if (emitter == null)
                 {
-                    // disabled because this simply not a rare condition due to pawns going out of range of each other
+                    // Not an error but a normal condition due to pawns going out of range of each other
                     //Log.Error($"Emitter is null for {pawn.LabelShort} in MoodOffset calculation.");
                     return 0f;
                 }
