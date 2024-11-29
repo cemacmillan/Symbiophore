@@ -61,30 +61,57 @@ namespace DIL_Symbiophore
 
         private void AbsorbPsychicEntropyFromPawn(Pawn targetPawn)
         {
-            float currentDay = GenDate.DaysPassedFloat;
+            float currentDay = GenLocalDate.DayOfYear(parent.Map);
             if (lastAbsorptionDay != currentDay)
             {
                 lastAbsorptionDay = currentDay;
                 timesAbsorbedToday = 0;
             }
 
-            // Can this pawn absorb again today?
+            // Check if the Symbiophore can absorb again today
             if (timesAbsorbedToday >= maxAbsorptionsPerDay)
             {
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"[Symbiophore] Maximum absorptions reached today for {parent.LabelShort}.");
+                }
                 return;
             }
 
+            // Check for valid target
             if (targetPawn == null || targetPawn.psychicEntropy == null)
             {
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message("[Symbiophore] Invalid target pawn or target does not have a PsychicEntropyTracker.");
+                }
                 return;
             }
 
-            // Absorb psychic entropy
-            float amountToAbsorb = 1.0f; // Amount to absorb
-            targetPawn.psychicEntropy.TryAddEntropy(-amountToAbsorb, this.parent, false);  // Negative value to reduce entropy
+            // Attempt to drain entropy
+            float amountToAbsorb = 1.0f;
+            bool success = targetPawn.psychicEntropy.TryAddEntropy(-amountToAbsorb, this.parent, scale: false);
+            if (success)
+            {
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"[Symbiophore] Drained {amountToAbsorb} entropy from {targetPawn.NameShortColored}. Current entropy: {targetPawn.psychicEntropy.EntropyValue}");
+                }
 
-            // Increase the number of absorptions for the day
-            timesAbsorbedToday++;
+                // Track the number of absorptions for the day
+                timesAbsorbedToday++;
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"[Symbiophore] Absorption successful. Times absorbed today: {timesAbsorbedToday}/{maxAbsorptionsPerDay}.");
+                }
+            }
+            else
+            {
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    Log.Message($"[Symbiophore] Failed to drain entropy from {targetPawn.NameShortColored}. Current entropy: {targetPawn.psychicEntropy.EntropyValue}");
+                }
+            }
         }
     }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace DIL_Symbiophore
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class SymbiophoreCustomNeed : Need
     {
         private float value;

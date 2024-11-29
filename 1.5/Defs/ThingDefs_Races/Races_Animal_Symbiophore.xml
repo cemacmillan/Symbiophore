@@ -70,12 +70,12 @@
             <bloodDef>Filth_BloodInsect</bloodDef>
             <meatColor>(160,168,139)</meatColor>
             <meatMarketValue>0.5</meatMarketValue>
-            <useMeatFrom>Megaspider</useMeatFrom>
+            <useMeatFrom>Fox_Fennec</useMeatFrom>
             <foodType>OmnivoreAnimal, AnimalProduct</foodType>
             <manhunterOnDamageChance>0.05</manhunterOnDamageChance>
             <herdAnimal>false</herdAnimal>
             <predator>true</predator>
-            <maxPreyBodySize>0.45</maxPreyBodySize>
+            <maxPreyBodySize>0.25</maxPreyBodySize>
             <baseBodySize>0.35</baseBodySize>
             <baseHungerRate>0.12</baseHungerRate>
             <baseHealthScale>1.6</baseHealthScale>
