@@ -2,6 +2,7 @@
 using UnityEngine;
 using Verse;
 using System.Collections.Generic;
+using System.Xml;
 
 namespace DIL_Symbiophore
 {
@@ -13,7 +14,7 @@ namespace DIL_Symbiophore
         private CompProperties_Skeinable skeinableProps;
         private int updateCounter = 0; // Counter to control update frequency
         private const int updateFrequency = 4; // Update only 1/4 as often
-        private const int TicksPerDay = 60000;
+        // private const int TicksPerDay = 60000;
 
         // Constructor when only Pawn is provided
         public SymbiophoreCustomNeed(Pawn pawn) : base(pawn)
@@ -32,24 +33,17 @@ namespace DIL_Symbiophore
         }
 
         // Initialize the emitter based on the pawn's Hediff
-        private void InitializeEmitter(Pawn pawn)
+        private void InitializeEmitter(Pawn emitterPawn)
         {
-            string pawnName = pawn.LabelShort ?? "Unnamed Pawn";
+            string pawnName = emitterPawn.LabelShort ?? "Unnamed Pawn";
 
             Hediff hediff =
-                pawn.health.hediffSet.GetFirstHediffOfDef(
+                emitterPawn.health.hediffSet.GetFirstHediffOfDef(
                     DefDatabase<HediffDef>.GetNamed("SymbiophorePsychicEmanation"));
             if (hediff != null)
             {
-                this.emitter = hediff.TryGetComp<HediffComp_AnimalEmitter>();
-                if (this.emitter != null)
-                {
-                    /*  if (SymbiophoreMod.settings.EnableLogging)
-                      {
-                          Log.Message($"HediffComp_AnimalEmitter found and assigned for {pawnName}.");
-                      }*/
-                }
-                else
+                emitter = hediff.TryGetComp<HediffComp_AnimalEmitter>();
+                if (emitter == null)
                 {
                     Log.Error($"Failed to assign HediffComp_AnimalEmitter for {pawnName}.");
                 }
@@ -59,19 +53,13 @@ namespace DIL_Symbiophore
                 Log.Error($"Hediff SymbiophorePsychicEmanation not found on {pawnName}. Cannot initialize emitter.");
             }
         }
-
-        // Initialize the skeinable properties
+        
         private void InitializeSkeinableProps(Pawn pawn)
         {
             CompProperties_Skeinable skeinable = pawn.def.GetCompProperties<CompProperties_Skeinable>();
             if (skeinable != null)
             {
                 skeinableProps = skeinable;
-                /*if (SymbiophoreMod.settings.EnableLogging)
-                {
-                    string pawnName = pawn.LabelShort ?? "Unnamed Pawn";
-                    Log.Message($"CompProperties_Skeinable found and assigned for {pawnName}. Resource Amount: {skeinableProps.resourceAmount}, Gather Interval Days: {skeinableProps.gatherResourcesIntervalDays}");
-                }*/
             }
             else
             {
@@ -83,18 +71,16 @@ namespace DIL_Symbiophore
                 }
             }
         }
-
-        // Property to get and set the current level of the need
+        
         public override float CurLevel
         {
             get => value;
-            set => this.value = value; // Ensure the value is stored in the CurLevel
+            set => this.value = value;
         }
 
         public override int GUIChangeArrow => 0; // No change arrow in GUI
         public override bool ShowOnNeedList => true; // Show on the need list
-
-        // Override with functionality to control update frequency
+        
         public override void NeedInterval()
         {
             updateCounter++;
@@ -104,16 +90,13 @@ namespace DIL_Symbiophore
                 UpdateValue(); // Update the value only every 4th time
             }
         }
-
-        // Tooltip string to display the need's current level
+        
         public override string GetTipString()
         {
             string tip = def.label + ": " + (CurLevel * 100f).ToString("F0") + "%";
-            // Removed logging here to prevent excessive log entries
             return tip;
         }
-
-        // Method to update the need value based on the MoodProxy from emitter
+        
         public void UpdateValue()
         {
             string pawnName = pawn.LabelShort ?? "Unnamed Pawn";
@@ -122,30 +105,15 @@ namespace DIL_Symbiophore
             {
                 if (def.defName == "SymbiophoreMood")
                 {
-                    /*  if (SymbiophoreMod.settings.EnableLogging)
-                      {
-                          Log.Message($"Updating value for SymbiophoreMood for {pawnName} with emitter. Current MoodProxy: {emitter.MoodProxy}");
-                      }
-       */
-                    CurLevel = emitter.MoodProxy / 12f;
-
-                    /*   if (SymbiophoreMod.settings.EnableLogging)
-                       {
-                           Log.Message($"Updated SymbiophoreMood value for {pawnName}: {CurLevel}");
-                       }*/
+                    // Comfort scale only — envelope.ToComfort01 via MoodProxy property.
+                    CurLevel = UnityEngine.Mathf.Clamp01(emitter.MoodProxy / 12f);
                 }
                 else if (def.defName == "SymbiophoreFullness")
                 {
                     var skeinableComp = pawn.TryGetComp<CompSkeinable>();
                     if (skeinableComp != null)
                     {
-                        // Use the public property SkeinProgress to update fullness
                         CurLevel = skeinableComp.SkeinProgress;
-
-                        /*  if (SymbiophoreMod.settings.EnableLogging)
-                          {
-                              Log.Message($"Updating value for SymbiophoreFullness for {pawnName} using skeinProgress. New Value: {CurLevel}");
-                          }*/
                     }
                     else
                     {
@@ -174,12 +142,62 @@ namespace DIL_Symbiophore
                 }
             }
         }
-
-        // Ensure data persistence by overriding ExposeData
+        
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Values.Look(ref value, "curLevel", 0f);
+    
+            // append defName so there's no confusion with the game's curLevel
+            string key = $"curLevel_{def.defName}";
+            float oldValue = value;
+
+            // Serialize the value with the unique key
+            Scribe_Values.Look(ref value, key, 0f);
+
+            if (SymbiophoreMod.settings.EnableLogging)
+            {
+                string pawnName = pawn?.LabelShort ?? "Unknown Pawn";
+                Log.Message($"ExposeData for {pawnName} (ID: {pawn?.thingIDNumber}). Old Value: {oldValue}, New Value: {value}, Key: {key}");
+            }
         }
+        
+        /*public override void ExposeData()
+        {
+            // Enter a unique node to avoid key collisions
+            Scribe.EnterNode(this.def.defName); // Use defName for clarity in the save file
+
+            try
+            {
+                // Call base to handle necessary base-level serialization
+                base.ExposeData();
+
+                // Scribe custom value
+                float oldValue = value;
+                Scribe_Values.Look(ref value, "curLevel", 0f);
+
+                if (SymbiophoreMod.settings.EnableLogging)
+                {
+                    string pawnName = pawn?.LabelShort ?? "Unknown Pawn";
+                    Log.Message($"ExposeData for {pawnName} (ID: {pawn?.thingIDNumber}). Old Value: {oldValue}, New Value: {value}");
+                }
+            }
+            finally
+            {
+                // Always exit the node to maintain XML integrity
+                Scribe.ExitNode();
+            }
+        }*/
+        
+        /*public override void ExposeData()
+        { 
+            base.ExposeData();
+            float oldValue = value;
+            Scribe_Values.Look(ref value, "curLevel", 0f);
+            if (SymbiophoreMod.settings.EnableLogging)
+            {
+                string pawnName = pawn?.LabelShort ?? "Unknown Pawn";
+                Log.Message($"ExposeData for {pawnName} (ID: {pawn?.thingIDNumber}). Old Value: {oldValue}, New Value: {value}");
+            }
+        }*/
     }
 }

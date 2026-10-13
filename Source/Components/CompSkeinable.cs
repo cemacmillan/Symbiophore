@@ -9,7 +9,7 @@ namespace DIL_Symbiophore
     {
         protected override int GatherResourcesIntervalDays => Props.gatherResourcesIntervalDays;
         protected override int ResourceAmount => CalculateResourceAmount();
-        protected override ThingDef ResourceDef => Props.resourceDef;
+        protected override ThingDef ResourceDef => Props.resourceDef; 
         protected override string SaveKey => "skeinProgress";
         protected float lastMoodProxy;
 
@@ -17,6 +17,21 @@ namespace DIL_Symbiophore
         private float skeinProgress;
 
         public CompProperties_Skeinable Props => (CompProperties_Skeinable)props;
+        
+        public override void PostExposeData()
+        {
+            //base.PostExposeData();
+
+            // Explicitly handle skeinProgress serialization
+            Scribe_Values.Look(ref skeinProgress, "skeinProgress", 0.50f, false);
+
+            // logging for debugging
+            /*if (SymbiophoreMod.settings.EnableLogging && Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                string parentName = parent?.LabelShort ?? "Unknown Parent";
+                Log.Message($"[CompSkeinable] skeinProgress loaded for {parentName}: {skeinProgress}");
+            }*/
+        }
 
         // Disable CompTick() since we don't need it
         public override void CompTick()
@@ -77,10 +92,11 @@ namespace DIL_Symbiophore
             }
         }
 
-        public float SkeinProgress
-          {
-              get { return skeinProgress; }
-          }
+            public float SkeinProgress
+            {
+                get => skeinProgress;
+                set => skeinProgress = Mathf.Clamp01(value); // Ensure it's clamped between 0 and 1
+            }
 
           public void CustomGathered(Pawn doer)
           {
@@ -128,7 +144,8 @@ namespace DIL_Symbiophore
                 .Select(h => h.TryGetComp<HediffComp_AnimalEmitter>())
                 .FirstOrDefault(comp => comp != null);
 
-            float moodProxy = hediff != null ? Mathf.Clamp01(hediff.MoodProxy / 12f) : 1f;
+            // Comfort envelope only (rain/catastrophe do not inflate silk).
+            float moodProxy = hediff != null ? Mathf.Clamp01(hediff.Envelope.ToComfort01()) : 1f;
 
          /*   if (SymbiophoreMod.settings.EnableLogging)
             {

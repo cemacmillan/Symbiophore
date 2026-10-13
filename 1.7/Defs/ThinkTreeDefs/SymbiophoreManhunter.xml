@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<ThinkTreeDef>
+	  <defName>Abilities_SymbiophoreManhunter</defName>
+	  <thinkRoot Class="ThinkNode_Priority">
+	    <subNodes>
+	      <li Class="ThinkNode_ConditionalColonist">
+	        <invert>true</invert>
+	        <subNodes>
+	          <!-- Custom logic for abilities in manhunter state -->
+	          <li Class="ThinkNode_ConditionalMentalStateClass">
+	            <stateClass>MentalState_Manhunter</stateClass>
+	            <subNodes>
+	              <li Class="ThinkNode_ConditionalHashIntervalTick">
+	                <interval>65</interval>
+	                <subNodes>
+	                  <li Class="DIL_Symbiophore.JobGiver_SymbiophoreFight" />
+	                </subNodes>
+	              </li>
+	            </subNodes>
+	          </li>
+	        </subNodes>
+	      </li>
+	    </subNodes>
+	  </thinkRoot>
+	</ThinkTreeDef>
+
+</Defs>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Defs>
+
+  <SoundDef>
+    <defName>SymbiophoreCall</defName>  
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Pawn/SymbiophoreCall</clipPath>
+          </li>
+        </grains>
+        <volumeRange>
+          <min>5.0</min>
+          <max>12.0</max>
+        </volumeRange>
+        <!--
+        <volumeRange>60</volumeRange>
+         -->
+        <pitchRange>
+          <min>0.8976015</min>        
+          <max>1.2769372</max>
+        </pitchRange>
+      </li>
+    </subSounds>
+  </SoundDef>
+
+    <SoundDef>
+    <defName>SymbiophoreAngry</defName>  
+    <context>MapOnly</context> 
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Pawn/SymbiophoreAngry</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>
+          <min>10.0</min>
+          <max>24.0</max>
+        </volumeRange>   
+        <pitchRange>
+          <min>0.85</min>        
+          <max>1</max>
+        </pitchRange>      
+      </li>    
+    </subSounds>
+  </SoundDef>
+
+    <SoundDef>
+    <defName>SymbiophoreWounded</defName>  
+    <context>MapOnly</context> 
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Pawn/SymbiophoreWounded</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>
+          <min>10.0</min>
+          <max>15.0</max>
+        </volumeRange>   
+        <pitchRange>
+          <min>1.2</min>        
+          <max>1.8</max>
+        </pitchRange>      
+      </li>    
+    </subSounds>
+  </SoundDef>
+
+    <SoundDef>
+    <defName>SymbiophoreDeath</defName>  
+    <context>MapOnly</context> 
+    <maxSimultaneous>1</maxSimultaneous>
+    <priorityMode>PrioritizeNearest</priorityMode>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Pawn/SymbiophoreDeath</clipPath>
+          </li>
+        </grains>      
+        <volumeRange>
+          <min>25.0</min>
+          <max>36.0</max>
+        </volumeRange>   
+        <pitchRange>
+          <min>0.84</min>        
+          <max>1.15</max>
+        </pitchRange>      
+      </li>    
+    </subSounds>
+  </SoundDef>
+  
+</Defs>

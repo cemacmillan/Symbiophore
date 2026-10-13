@@ -31,11 +31,15 @@
         <li>Fabric</li>
       </categories>
       <commonality>0.05</commonality>
-     <color>(180,169,154)</color>
+<allowColorGenerators>true</allowColorGenerators>
+     <!-- <color>(180,169,154)</color> -->
+     <!-- Opaque RGB only: byte RGB + 0–1 alpha is parsed as alpha≈1/255 and vanishes on CutoutComplex. -->
+     <color>(205,195,175)</color>
+
       <statFactors>
         <Flammability>0.4</Flammability>
         <MaxHitPoints>1.5</MaxHitPoints>
-        <Beauty>7</Beauty>
+        <Beauty>5</Beauty>
       </statFactors>
     </stuffProps>
     <thingCategories>
@@ -45,7 +49,38 @@
       <li>ExoticMisc</li>
     </tradeTags>
     <thingSetMakerTags><li>RewardStandardCore</li></thingSetMakerTags>
+    <comps>
+      <li>
+        <compClass>CompColorable</compClass>
+      </li>
+    </comps>
+    <colorGeneratorInTraderStock Class="ColorGenerator_Options">
+      <options>
+        <li>
+          <weight>5</weight>
+          <only>(0.33,0.33,0.33,1)</only>
+        </li>
+        <li>
+          <weight>10</weight>
+          <min>(0.3,0.3,0.3,1)</min>
+          <max>(0.9,0.9,0.9,1)</max>
+        </li>
+        <li>
+          <weight>5</weight>
+          <only>(0.9,0.9,0.9,1)</only>
+        </li>
+      </options>
+    </colorGeneratorInTraderStock>
     <allowedArchonexusCount>80</allowedArchonexusCount>
+   <modExtensions>
+    <li Class="SlippersNmSpc.MaterialTagDefExtension">
+      <materialTags>
+        <li>ComfortMaterial</li>
+        <li>InsulatingMaterial</li>
+        <li>BeautyMaterial</li>
+      </materialTags>
+    </li>
+  </modExtensions>
   </ThingDef>
   
 </Defs>

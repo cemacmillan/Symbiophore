@@ -33,7 +33,7 @@ namespace DIL_Symbiophore
                 {
                     if (need is SymbiophoreCustomNeed customNeed)
                     {
-                        customNeed.UpdateValue(); // Update value if it's a SymbiophoreCustomNeed
+                        // customNeed.UpdateValue(); // Update value if it's a SymbiophoreCustomNeed
 
                         Rect needRect = new Rect(0f, curY, viewRect.width, NeedHeight);
                         need.DrawOnGUI(needRect, maxThresholdMarkers: 10, customMargin: -1f, drawArrows: true, doTooltip: true, rectForTooltip: needRect, drawLabel: true);
@@ -53,10 +53,16 @@ namespace DIL_Symbiophore
 
         private static void UpdateDisplayNeeds(Pawn pawn)
         {
+            bool letUsTest = false;
+            
+            if(!letUsTest)
+                return;
+            
             customNeeds.Clear();
             customNeeds.AddRange(pawn.needs.AllNeeds.OfType<SymbiophoreCustomNeed>());
 
             // Update custom needs from the harmonizer and other sources
+            
             foreach (var need in customNeeds.OfType<SymbiophoreCustomNeed>())
             {
                 need.UpdateValue();

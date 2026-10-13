@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <JobDef>
+        <defName>SkeinSymbiophore</defName>
+        <driverClass>DIL_Symbiophore.JobDriver_Skein</driverClass>
+        <reportString>skeining TargetA.</reportString>
+       <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+</Defs>

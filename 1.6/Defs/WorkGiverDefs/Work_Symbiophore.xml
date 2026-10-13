@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+     <WorkGiverDef>
+        <defName>WorkGiver_SkeinSymbiophore</defName>
+        <label>skein symbiophore</label>
+        <giverClass>DIL_Symbiophore.WorkGiver_SkeinSymbiophore</giverClass>
+        <workType>Handling</workType>
+        <verb>Skein</verb>
+        <gerund>Skeining</gerund>
+        <requiredCapacities>
+            <li>Manipulation</li>
+            <li>Talking</li>
+        </requiredCapacities>
+       <priorityInType>95</priorityInType>
+    </WorkGiverDef>
+
+</Defs>
